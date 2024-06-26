@@ -1,0 +1,3450 @@
+
+
+HI-TECH Software PIC PRO Macro Assembler V9.83 build 10920 
+                                                                                               Wed Aug 16 13:05:28 2017
+
+HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
+     1                           	processor	16F628A
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	config,global,class=CONFIG,delta=2
+     5                           	psect	idataBANK0,global,class=CODE,delta=2
+     6                           	psect	nvBANK0,global,class=BANK0,space=1,delta=1
+     7                           	psect	cinit,global,class=CODE,delta=2
+     8                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     9                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+    10                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
+    11                           	psect	bssBANK1,global,class=BANK1,space=1,delta=1
+    12                           	psect	clrtext,global,class=CODE,delta=2
+    13                           	psect	cstackBANK1,global,class=BANK1,space=1,delta=1
+    14                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    15                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+    16                           	psect	maintext,global,class=CODE,delta=2
+    17                           	psect	swtext1,local,class=CONST,delta=2
+    18                           	psect	text430,local,class=CODE,delta=2
+    19                           	psect	text431,local,class=CODE,delta=2
+    20                           	psect	text432,local,class=CODE,delta=2
+    21                           	psect	text433,local,class=CODE,delta=2
+    22                           	psect	text434,local,class=CODE,delta=2
+    23                           	psect	swtext2,local,class=CONST,delta=2
+    24                           	psect	text435,local,class=CODE,delta=2
+    25                           	psect	text436,local,class=CODE,delta=2
+    26                           	psect	text437,local,class=CODE,delta=2
+    27                           	psect	text438,local,class=CODE,delta=2
+    28                           	psect	text439,local,class=CODE,delta=2
+    29                           	psect	text440,local,class=CODE,delta=2
+    30                           	psect	intentry,global,class=CODE,delta=2
+    31                           	psect	text441,local,class=CODE,delta=2
+    32                           	psect	text442,local,class=CODE,delta=2
+    33                           	psect	functab,global,reloc=256,class=CODE,delta=2
+    34                           	psect	pa_nodes,global,class=CODE,delta=2
+    35                           	dabs	1,0x7E,2
+    36  000A                     	;#
+    37                           
+    38                           	psect	config
+    39  2007  FF62               	dw	65378	;#
+    40                           
+    41                           	psect	idataBANK0
+    42  0000                     __pidataBANK0:	
+    43                           
+    44                           	psect	nvBANK0
+    45  0060                     __pnvBANK0:	
+    46  0060                     _VehSpd_numDly:	
+    47  0060                     	ds	1
+    48  0061                     _VehV_vLim:	
+    49  0061                     	ds	1
+    50  0017                     _CCP1CON	set	23
+    51  0016                     _CCPR1H	set	22
+    52  0015                     _CCPR1L	set	21
+    53  001F                     _CMCON	set	31
+    54  000B                     _INTCON	set	11
+    55  000C                     _PIR1	set	12
+    56  0005                     _PORTA	set	5
+    57  0006                     _PORTB	set	6
+    58  001A                     _RCREG	set	26
+    59  0018                     _RCSTA	set	24
+    60  0010                     _T1CON	set	16
+    61  0012                     _T2CON	set	18
+    62  000E                     _TMR1L	set	14
+    63  0019                     _TXREG	set	25
+    64  0018                     _CARRY	set	24
+    65  00C4                     _CREN	set	196
+    66  005F                     _GIE	set	95
+    67  005C                     _INTE	set	92
+    68  0059                     _INTF	set	89
+    69  005E                     _PEIE	set	94
+    70  0028                     _RA0	set	40
+    71  0029                     _RA1	set	41
+    72  0033                     _RB3	set	51
+    73  0065                     _RCIF	set	101
+    74  00C7                     _SPEN	set	199
+    75  00C5                     _SREN	set	197
+    76  0084                     _T1CKPS0	set	132
+    77  0085                     _T1CKPS1	set	133
+    78  0083                     _T1OSCEN	set	131
+    79  0090                     _T2CKPS0	set	144
+    80  0091                     _T2CKPS1	set	145
+    81  0081                     _TMR1CS	set	129
+    82  0060                     _TMR1IF	set	96
+    83  0080                     _TMR1ON	set	128
+    84  0061                     _TMR2IF	set	97
+    85  0092                     _TMR2ON	set	146
+    86  0093                     _TOUTPS0	set	147
+    87  0094                     _TOUTPS1	set	148
+    88  0095                     _TOUTPS2	set	149
+    89  0096                     _TOUTPS3	set	150
+    90  0082                     _nT1SYNC	set	130
+    91  009B                     _EEADR	set	155
+    92  009C                     _EECON1	set	156
+    93  009D                     _EECON2	set	157
+    94  009A                     _EEDATA	set	154
+    95  0081                     _OPTION_REG	set	129
+    96  008E                     _PCON	set	142
+    97  008C                     _PIE1	set	140
+    98  0092                     _PR2	set	146
+    99  0099                     _SPBRG	set	153
+   100  0085                     _TRISA	set	133
+   101  0086                     _TRISB	set	134
+   102  0098                     _TXSTA	set	152
+   103  009F                     _VRCON	set	159
+   104  04C2                     _BRGH	set	1218
+   105  04C7                     _CSRC	set	1223
+   106  0465                     _RCIE	set	1125
+   107  04E0                     _RD	set	1248
+   108  04C4                     _SYNC	set	1220
+   109  0460                     _TMR1IE	set	1120
+   110  0461                     _TMR2IE	set	1121
+   111  04C1                     _TRMT	set	1217
+   112  04C5                     _TXEN	set	1221
+   113  04E1                     _WR	set	1249
+   114  04E2                     _WREN	set	1250
+   115  000F                     _TMR1H	set	15
+   116                           
+   117                           	psect	cinit
+   118  05CD                     start_initialization:	
+   119  05CD  3020               	movlw	low __pbssBANK0
+   120                           
+   121                           ; Clear objects allocated to COMMON
+   122  05CE  01FD               	clrf	__pbssCOMMON& (0+127)
+   123                           
+   124                           ; Clear objects allocated to BANK0
+   125  05CF  1383               	bcf	3,7	;select IRP bank0
+   126  05D0  0084               	movwf	4
+   127  05D1  3046               	movlw	low (__pbssBANK0+38)
+   128  05D2  25F6               	fcall	clear_ram
+   129                           
+   130                           ; Clear objects allocated to BANK1
+   131  05D3  30A0               	movlw	low __pbssBANK1
+   132  05D4  0084               	movwf	4
+   133  05D5  30B9               	movlw	low (__pbssBANK1+25)
+   134  05D6  25F6               	fcall	clear_ram
+   135                           
+   136                           ;initializer for _VehV_tiSig
+   137  05D7  3028               	movlw	40
+   138  05D8  00DD               	movwf	__pdataBANK0& (0+127)
+   139  05D9  30D5               	movlw	213
+   140  05DA  00DE               	movwf	(__pdataBANK0+1)& (0+127)
+   141                           
+   142                           ;initializer for _VehV_vRef
+   143  05DB  3028               	movlw	40
+   144  05DC  00DF               	movwf	(__pdataBANK0+2)& (0+127)
+   145  05DD                     end_of_initialization:	
+   146                           ;End of C runtime variable initialization code
+   147                           
+   148  05DD  0183               	clrf	3
+   149  05DE  2B88               	ljmp	_main	;jump to C main() function
+   150                           
+   151                           	psect	bssCOMMON
+   152  007D                     __pbssCOMMON:	
+   153  007D                     _Dev_stTmprDetActv:	
+   154  007D                     	ds	1
+   155                           
+   156                           	psect	bssBANK0
+   157  0020                     __pbssBANK0:	
+   158  0020                     _tasks:	
+   159  0020                     	ds	15
+   160  002F                     _VehV_tiPulse:	
+   161  002F                     	ds	4
+   162  0033                     _VehV_tiPulseAvg:	
+   163  0033                     	ds	4
+   164  0037                     _Rx_elapsed_ticks:	
+   165  0037                     	ds	2
+   166  0039                     _VehSpd_ctDly:	
+   167  0039                     	ds	2
+   168  003B                     _VehSpd_ctDlyThres:	
+   169  003B                     	ds	2
+   170  003D                     _VehV_vRaw:	
+   171  003D                     	ds	2
+   172  003F                     _elapsed_ticks:	
+   173  003F                     	ds	2
+   174  0041                     Create_Task@index:	
+   175  0041                     	ds	1
+   176  0042                     _Checksum:	
+   177  0042                     	ds	1
+   178  0043                     _RxPtr:	
+   179  0043                     	ds	1
+   180  0044                     _Rx_complete:	
+   181  0044                     	ds	1
+   182  0045                     _VehV_stSpdLim:	
+   183  0045                     	ds	1
+   184                           
+   185                           	psect	dataBANK0
+   186  005D                     __pdataBANK0:	
+   187  005D                     _VehV_tiSig:	
+   188  005D                     	ds	2
+   189  005F                     _VehV_vRef:	
+   190  005F                     	ds	1
+   191                           
+   192                           	psect	bssBANK1
+   193  00A0                     __pbssBANK1:	
+   194  00A0                     _Rxdata:	
+   195  00A0                     	ds	25
+   196                           
+   197                           	psect	clrtext
+   198  05F6                     clear_ram:	
+   199                           ;	Called with FSR containing the base address, and
+   200                           ;	W with the last address+1
+   201                           
+   202  05F6  0064               	clrwdt	;clear the watchdog before getting into this loop
+   203  05F7                     clrloop:	
+   204  05F7  0180               	clrf	0	;clear RAM location pointed to by FSR
+   205  05F8  0A84               	incf	4,f	;increment pointer
+   206  05F9  0604               	xorwf	4,w	;XOR with final address
+   207  05FA  1903               	btfsc	3,2	;have we reached the end yet?
+   208  05FB  3400               	retlw	0	;all done for this memory range, return
+   209  05FC  0604               	xorwf	4,w	;XOR again to restore value
+   210  05FD  2DF7               	goto	clrloop	;do the next byte
+   211                           
+   212                           	psect	cstackBANK1
+   213  00B9                     __pcstackBANK1:	
+   214  00B9                     ??_Task_1_100ms:	
+   215                           
+   216                           ; 0 bytes @ 0x0
+   217  00B9                     	ds	12
+   218                           
+   219                           	psect	cstackCOMMON
+   220  0070                     __pcstackCOMMON:	
+   221  0070                     ?_transmitByte:	
+   222  0070                     ?_Dispatch_Tasks:	
+   223                           ; 0 bytes @ 0x0
+   224                           
+   225  0070                     ?_my_isr:	
+   226                           ; 0 bytes @ 0x0
+   227                           
+   228  0070                     ?_Reset_Comm_Timeout:	
+   229                           ; 0 bytes @ 0x0
+   230                           
+   231  0070                     ?_Task_1_100ms:	
+   232                           ; 0 bytes @ 0x0
+   233                           
+   234  0070                     ?_Task_2_100ms:	
+   235                           ; 0 bytes @ 0x0
+   236                           
+   237  0070                     ?_Task_3_500ms:	
+   238                           ; 0 bytes @ 0x0
+   239                           
+   240  0070                     ?_main:	
+   241                           ; 0 bytes @ 0x0
+   242                           
+   243  0070                     ?_eeprom_read:	
+   244                           ; 0 bytes @ 0x0
+   245                           
+   246  0070                     ?___lmul:	
+   247                           ; 1 bytes @ 0x0
+   248                           
+   249  0070                     ?___lldiv:	
+   250                           ; 4 bytes @ 0x0
+   251                           
+   252  0070                     ___lmul@multiplier:	
+   253                           ; 4 bytes @ 0x0
+   254                           
+   255  0070                     ___lldiv@divisor:	
+   256                           ; 4 bytes @ 0x0
+   257                           
+   258                           
+   259                           ; 4 bytes @ 0x0
+   260  0070                     	ds	4
+   261  0074                     ___lmul@multiplicand:	
+   262  0074                     ___lldiv@dividend:	
+   263                           ; 4 bytes @ 0x4
+   264                           
+   265                           
+   266                           ; 4 bytes @ 0x4
+   267  0074                     	ds	4
+   268  0078                     ??___lmul:	
+   269  0078                     ??___lldiv:	
+   270                           ; 0 bytes @ 0x8
+   271                           
+   272  0078                     ___lmul@product:	
+   273                           ; 0 bytes @ 0x8
+   274                           
+   275  0078                     ___lldiv@quotient:	
+   276                           ; 4 bytes @ 0x8
+   277                           
+   278                           
+   279                           ; 4 bytes @ 0x8
+   280  0078                     	ds	4
+   281  007C                     ___lldiv@counter:	
+   282                           
+   283                           ; 1 bytes @ 0xC
+   284  007C                     	ds	1
+   285                           
+   286                           	psect	cstackBANK0
+   287  0046                     __pcstackBANK0:	
+   288  0046                     ??_my_isr:	
+   289                           
+   290                           ; 0 bytes @ 0x0
+   291  0046                     	ds	8
+   292  004E                     my_isr@temp:	
+   293                           
+   294                           ; 4 bytes @ 0x8
+   295  004E                     	ds	4
+   296  0052                     ??_transmitByte:	
+   297  0052                     ??_eeprom_read:	
+   298                           ; 0 bytes @ 0xC
+   299                           
+   300  0052                     ??_Reset_Comm_Timeout:	
+   301                           ; 0 bytes @ 0xC
+   302                           
+   303  0052                     ??_Task_2_100ms:	
+   304                           ; 0 bytes @ 0xC
+   305                           
+   306  0052                     ??_Task_3_500ms:	
+   307                           ; 0 bytes @ 0xC
+   308                           
+   309  0052                     ?_eeprom_write:	
+   310                           ; 0 bytes @ 0xC
+   311                           
+   312  0052                     ?___bmul:	
+   313                           ; 1 bytes @ 0xC
+   314                           
+   315  0052                     transmitByte@data:	
+   316                           ; 1 bytes @ 0xC
+   317                           
+   318  0052                     eeprom_read@addr:	
+   319                           ; 1 bytes @ 0xC
+   320                           
+   321  0052                     eeprom_write@value:	
+   322                           ; 1 bytes @ 0xC
+   323                           
+   324  0052                     ___bmul@multiplicand:	
+   325                           ; 1 bytes @ 0xC
+   326                           
+   327                           
+   328                           ; 1 bytes @ 0xC
+   329  0052                     	ds	1
+   330  0053                     ??_eeprom_write:	
+   331  0053                     ??___bmul:	
+   332                           ; 0 bytes @ 0xD
+   333                           
+   334  0053                     eeprom_write@addr:	
+   335                           ; 0 bytes @ 0xD
+   336                           
+   337  0053                     ___bmul@product:	
+   338                           ; 1 bytes @ 0xD
+   339                           
+   340                           
+   341                           ; 1 bytes @ 0xD
+   342  0053                     	ds	1
+   343  0054                     ___bmul@multiplier:	
+   344  0054                     Task_1_100ms@chksum:	
+   345                           ; 1 bytes @ 0xE
+   346                           
+   347                           
+   348                           ; 2 bytes @ 0xE
+   349  0054                     	ds	1
+   350  0055                     ?_Create_Task:	
+   351  0055                     Create_Task@period:	
+   352                           ; 0 bytes @ 0xF
+   353                           
+   354                           
+   355                           ; 2 bytes @ 0xF
+   356  0055                     	ds	1
+   357  0056                     Task_1_100ms@data:	
+   358                           
+   359                           ; 1 bytes @ 0x10
+   360  0056                     	ds	1
+   361  0057                     Task_1_100ms@i:	
+   362  0057                     Create_Task@delay:	
+   363                           ; 1 bytes @ 0x11
+   364                           
+   365                           
+   366                           ; 2 bytes @ 0x11
+   367  0057                     	ds	1
+   368  0058                     Task_1_100ms@currAddr:	
+   369                           
+   370                           ; 1 bytes @ 0x12
+   371  0058                     	ds	1
+   372  0059                     ??_Create_Task:	
+   373  0059                     ??_Dispatch_Tasks:	
+   374                           ; 0 bytes @ 0x13
+   375                           
+   376                           
+   377                           ; 0 bytes @ 0x13
+   378  0059                     	ds	2
+   379  005B                     Dispatch_Tasks@i:	
+   380  005B                     Create_Task@function_pointer:	
+   381                           ; 1 bytes @ 0x15
+   382                           
+   383                           
+   384                           ; 1 bytes @ 0x15
+   385  005B                     	ds	1
+   386  005C                     ??_main:	
+   387                           
+   388                           ; 0 bytes @ 0x16
+   389  005C                     	ds	1
+   390                           
+   391                           	psect	maintext
+   392  0388                     __pmaintext:	
+   393 ;;Data sizes: Strings 0, constant 0, data 3, bss 64, persistent 2 stack 0
+   394 ;;Auto spaces:   Size  Autos    Used
+   395 ;; COMMON          14     13      14
+   396 ;; BANK0           80     23      66
+   397 ;; BANK1           80     12      37
+   398 ;; BANK2           48      0       0
+   399 ;;
+   400 ;; Pointer list with targets:
+   401 ;; ?___lldiv	unsigned long  size(1) Largest target is 0
+   402 ;;
+   403 ;; ?___lmul	unsigned long  size(1) Largest target is 0
+   404 ;;
+   405 ;; Create_Task@function_pointer	PTR FTN()void  size(1) Largest target is 0
+   406 ;;		 -> Task_3_500ms(), Task_2_100ms(), Task_1_100ms(), 
+   407 ;;
+   408 ;; S1122$task	PTR FTN()void  size(1) Largest target is 0
+   409 ;;		 -> Task_3_500ms(), Task_2_100ms(), Task_1_100ms(), 
+   410 ;;
+   411 ;; tasks.task	PTR FTN()void  size(1) Largest target is 0
+   412 ;;		 -> Task_3_500ms(), Task_2_100ms(), Task_1_100ms(), 
+   413 ;;
+   414 ;;
+   415 ;; Critical Paths under _main in COMMON
+   416 ;;
+   417 ;;   None.
+   418 ;;
+   419 ;; Critical Paths under _my_isr in COMMON
+   420 ;;
+   421 ;;   _my_isr->___lldiv
+   422 ;;
+   423 ;; Critical Paths under _main in BANK0
+   424 ;;
+   425 ;;   _main->_Create_Task
+   426 ;;   _main->_Dispatch_Tasks
+   427 ;;   _Dispatch_Tasks->_Task_1_100ms
+   428 ;;   _Create_Task->___bmul
+   429 ;;   _Task_1_100ms->_eeprom_write
+   430 ;;
+   431 ;; Critical Paths under _my_isr in BANK0
+   432 ;;
+   433 ;;   None.
+   434 ;;
+   435 ;; Critical Paths under _main in BANK1
+   436 ;;
+   437 ;;   _Dispatch_Tasks->_Task_1_100ms
+   438 ;;
+   439 ;; Critical Paths under _my_isr in BANK1
+   440 ;;
+   441 ;;   None.
+   442 ;;
+   443 ;; Critical Paths under _main in BANK2
+   444 ;;
+   445 ;;   None.
+   446 ;;
+   447 ;; Critical Paths under _my_isr in BANK2
+   448 ;;
+   449 ;;   None.
+   450 ;;
+   451 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   452 ;;
+   453 ;;
+   454 ;;Call Graph Tables:
+   455 ;;
+   456 ;; ---------------------------------------------------------------------------------
+   457 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   458 ;; ---------------------------------------------------------------------------------
+   459 ;; (0) _main                                                 1     1      0     853
+   460 ;;                                             22 BANK0      1     1      0
+   461 ;;                        _Create_Task
+   462 ;;                        _eeprom_read
+   463 ;;                     _Dispatch_Tasks
+   464 ;; ---------------------------------------------------------------------------------
+   465 ;; (1) _Dispatch_Tasks                                       3     3      0     697
+   466 ;;                                             19 BANK0      3     3      0
+   467 ;;                             ___bmul
+   468 ;;                       _Task_3_500ms
+   469 ;;                       _Task_2_100ms
+   470 ;;                       _Task_1_100ms
+   471 ;; ---------------------------------------------------------------------------------
+   472 ;; (1) _Create_Task                                          7     3      4     134
+   473 ;;                                             15 BANK0      7     3      4
+   474 ;;                             ___bmul
+   475 ;; ---------------------------------------------------------------------------------
+   476 ;; (2) _Task_1_100ms                                        17    17      0     437
+   477 ;;                                             14 BANK0      5     5      0
+   478 ;;                                              0 BANK1     12    12      0
+   479 ;;                       _eeprom_write
+   480 ;;                       _transmitByte
+   481 ;;                        _eeprom_read
+   482 ;;                 _Reset_Comm_Timeout
+   483 ;; ---------------------------------------------------------------------------------
+   484 ;; (2) ___bmul                                               3     2      1      68
+   485 ;;                                             12 BANK0      3     2      1
+   486 ;; ---------------------------------------------------------------------------------
+   487 ;; (2) _Task_3_500ms                                         0     0      0       0
+   488 ;; ---------------------------------------------------------------------------------
+   489 ;; (2) _Task_2_100ms                                         3     3      0       0
+   490 ;;                                             12 BANK0      3     3      0
+   491 ;; ---------------------------------------------------------------------------------
+   492 ;; (3) _eeprom_read                                          1     1      0      22
+   493 ;;                                             12 BANK0      1     1      0
+   494 ;; ---------------------------------------------------------------------------------
+   495 ;; (3) _transmitByte                                         1     1      0      22
+   496 ;;                                             12 BANK0      1     1      0
+   497 ;; ---------------------------------------------------------------------------------
+   498 ;; (3) _eeprom_write                                         2     1      1      50
+   499 ;;                                             12 BANK0      2     1      1
+   500 ;; ---------------------------------------------------------------------------------
+   501 ;; (3) _Reset_Comm_Timeout                                   0     0      0       0
+   502 ;; ---------------------------------------------------------------------------------
+   503 ;; Estimated maximum stack depth 3
+   504 ;; ---------------------------------------------------------------------------------
+   505 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   506 ;; ---------------------------------------------------------------------------------
+   507 ;; (4) _my_isr                                              12    12      0     300
+   508 ;;                                              0 BANK0     12    12      0
+   509 ;;                             ___lmul
+   510 ;;                            ___lldiv
+   511 ;; ---------------------------------------------------------------------------------
+   512 ;; (5) ___lldiv                                             13     5      8     162
+   513 ;;                                              0 COMMON    13     5      8
+   514 ;; ---------------------------------------------------------------------------------
+   515 ;; (5) ___lmul                                              12     4      8      92
+   516 ;;                                              0 COMMON    12     4      8
+   517 ;; ---------------------------------------------------------------------------------
+   518 ;; Estimated maximum stack depth 5
+   519 ;; ---------------------------------------------------------------------------------
+   520 ;; Call Graph Graphs:
+   521 ;; _main (ROOT)
+   522 ;;   _Create_Task
+   523 ;;     ___bmul
+   524 ;;   _eeprom_read
+   525 ;;   _Dispatch_Tasks
+   526 ;;     ___bmul
+   527 ;;     _Task_3_500ms
+   528 ;;     _Task_2_100ms
+   529 ;;     _Task_1_100ms
+   530 ;;       _eeprom_write
+   531 ;;       _transmitByte
+   532 ;;       _eeprom_read
+   533 ;;       _Reset_Comm_Timeout
+   534 ;;
+   535 ;; _my_isr (ROOT)
+   536 ;;   ___lmul
+   537 ;;   ___lldiv
+   538 ;;
+   539 ;; Address spaces:
+   540 ;;Name               Size   Autos  Total    Cost      Usage
+   541 ;;SFR3                 0      0       0       4        0.0%
+   542 ;;BITSFR3              0      0       0       4        0.0%
+   543 ;;BANK2               30      0       0       9        0.0%
+   544 ;;BITBANK2            30      0       0       8        0.0%
+   545 ;;SFR2                 0      0       0       5        0.0%
+   546 ;;BITSFR2              0      0       0       5        0.0%
+   547 ;;SFR1                 0      0       0       2        0.0%
+   548 ;;BITSFR1              0      0       0       2        0.0%
+   549 ;;BANK1               50      C      25       7       46.3%
+   550 ;;BITBANK1            50      0       0       6        0.0%
+   551 ;;CODE                 0      0       0       0        0.0%
+   552 ;;DATA                 0      0      7C      10        0.0%
+   553 ;;ABS                  0      0      75       4        0.0%
+   554 ;;NULL                 0      0       0       0        0.0%
+   555 ;;STACK                0      0       7       2        0.0%
+   556 ;;BANK0               50     17      42       3       82.5%
+   557 ;;BITBANK0            50      0       0       5        0.0%
+   558 ;;SFR0                 0      0       0       1        0.0%
+   559 ;;BITSFR0              0      0       0       1        0.0%
+   560 ;;COMMON               E      D       E       1      100.0%
+   561 ;;BITCOMMON            E      0       0       0        0.0%
+   562 ;;EEDATA              80      0       0       0        0.0%
+   563                           
+   564                           
+   565 ;; *************** function _main *****************
+   566 ;; Defined at:
+   567 ;;		line 244 in file "C:\Users\Gamer\Desktop\Tony\Work\03_FleetMax\Projects\FMX_01_RSL-DBV\03_Embedded\03_Firmware\V4\FM
+      +X-DBV.c"
+   568 ;; Parameters:    Size  Location     Type
+   569 ;;		None
+   570 ;; Auto vars:     Size  Location     Type
+   571 ;;		None
+   572 ;; Return value:  Size  Location     Type
+   573 ;;		None               void
+   574 ;; Registers used:
+   575 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   576 ;; Tracked objects:
+   577 ;;		On entry : 17F/0
+   578 ;;		On exit  : 60/0
+   579 ;;		Unchanged: FFE00/0
+   580 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   581 ;;      Params:         0       0       0       0
+   582 ;;      Locals:         0       0       0       0
+   583 ;;      Temps:          0       1       0       0
+   584 ;;      Totals:         0       1       0       0
+   585 ;;Total ram usage:        1 bytes
+   586 ;; Hardware stack levels required when called:    5
+   587 ;; This function calls:
+   588 ;;		_Create_Task
+   589 ;;		_eeprom_read
+   590 ;;		_Dispatch_Tasks
+   591 ;; This function is called by:
+   592 ;;		Startup code after reset
+   593 ;; This function uses a non-reentrant model
+   594 ;;
+   595  0388                     _main:	
+   596                           
+   597                           ;FMX-DBV.c: 245: CCPR1L = 0x00;
+   598                           
+   599                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   600  0388  0195               	clrf	21	;volatile
+   601                           
+   602                           ;FMX-DBV.c: 246: CCPR1H = 0x00;
+   603  0389  0196               	clrf	22	;volatile
+   604                           
+   605                           ;FMX-DBV.c: 247: CCP1CON = 0x00;
+   606  038A  0197               	clrf	23	;volatile
+   607                           
+   608                           ;FMX-DBV.c: 248: CMCON = 0b00000111;
+   609  038B  3007               	movlw	7
+   610  038C  009F               	movwf	31	;volatile
+   611                           
+   612                           ;FMX-DBV.c: 249: EEDATA = 0x00;
+   613  038D  1683               	bsf	3,5	;RP0=1, select bank1
+   614  038E  019A               	clrf	26	;volatile
+   615                           
+   616                           ;FMX-DBV.c: 250: EEADR = 0x00;
+   617  038F  019B               	clrf	27	;volatile
+   618                           
+   619                           ;FMX-DBV.c: 251: EECON1 = 0x00;
+   620  0390  019C               	clrf	28	;volatile
+   621                           
+   622                           ;FMX-DBV.c: 252: VRCON = 0x00;
+   623  0391  019F               	clrf	31	;volatile
+   624                           
+   625                           ;FMX-DBV.c: 255: TRISA = 0b00011100;
+   626  0392  301C               	movlw	28
+   627  0393  0085               	movwf	5	;volatile
+   628                           
+   629                           ;FMX-DBV.c: 256: PORTA = 0b00000001;
+   630  0394  3001               	movlw	1
+   631  0395  1283               	bcf	3,5	;RP0=0, select bank0
+   632  0396  0085               	movwf	5	;volatile
+   633                           
+   634                           ;FMX-DBV.c: 257: TRISB = 0b10110111;
+   635  0397  30B7               	movlw	183
+   636  0398  1683               	bsf	3,5	;RP0=1, select bank1
+   637  0399  0086               	movwf	6	;volatile
+   638                           
+   639                           ;FMX-DBV.c: 258: PORTB = 0b00000000;
+   640  039A  1283               	bcf	3,5	;RP0=0, select bank0
+   641  039B  0186               	clrf	6	;volatile
+   642                           
+   643                           ;FMX-DBV.c: 260: PCON = 0b00001000;
+   644  039C  3008               	movlw	8
+   645  039D  1683               	bsf	3,5	;RP0=1, select bank1
+   646  039E  008E               	movwf	14	;volatile
+   647                           
+   648                           ;FMX-DBV.c: 263: TMR1L = 0x00;
+   649  039F  1283               	bcf	3,5	;RP0=0, select bank0
+   650  03A0  018E               	clrf	14	;volatile
+   651                           
+   652                           ;FMX-DBV.c: 264: TMR1H = 0x00;
+   653  03A1  018F               	clrf	15	;volatile
+   654                           
+   655                           ;FMX-DBV.c: 265: T1CON = 0x00;
+   656  03A2  0190               	clrf	16	;volatile
+   657  03A3  30FA               	movlw	250
+   658                           
+   659                           ;FMX-DBV.c: 266: T1CKPS1 = 0;
+   660  03A4  1290               	bcf	16,5
+   661                           
+   662                           ;FMX-DBV.c: 267: T1CKPS0 = 0;
+   663  03A5  1210               	bcf	16,4
+   664                           
+   665                           ;FMX-DBV.c: 268: T1OSCEN = 0;
+   666  03A6  1190               	bcf	16,3
+   667                           
+   668                           ;FMX-DBV.c: 269: nT1SYNC = 0;
+   669  03A7  1110               	bcf	16,2
+   670  03A8  1090               	bcf	16,1
+   671                           
+   672                           ;FMX-DBV.c: 273: PR2 = 250;
+   673  03A9  1683               	bsf	3,5	;RP0=1, select bank1
+   674  03AA  0092               	movwf	18	;volatile
+   675                           
+   676                           ;FMX-DBV.c: 274: T2CON = 0b00000000;
+   677  03AB  1283               	bcf	3,5	;RP0=0, select bank0
+   678  03AC  0192               	clrf	18	;volatile
+   679  03AD  3019               	movlw	25
+   680                           
+   681                           ;FMX-DBV.c: 275: TOUTPS3 = 1;
+   682  03AE  1712               	bsf	18,6
+   683                           
+   684                           ;FMX-DBV.c: 276: TOUTPS2 = 0;
+   685  03AF  1292               	bcf	18,5
+   686                           
+   687                           ;FMX-DBV.c: 277: TOUTPS1 = 0;
+   688  03B0  1212               	bcf	18,4
+   689                           
+   690                           ;FMX-DBV.c: 278: TOUTPS0 = 1;
+   691  03B1  1592               	bsf	18,3
+   692                           
+   693                           ;FMX-DBV.c: 279: T2CKPS1 = 0;
+   694  03B2  1092               	bcf	18,1
+   695                           
+   696                           ;FMX-DBV.c: 280: T2CKPS0 = 1;
+   697  03B3  1412               	bsf	18,0
+   698                           
+   699                           ;FMX-DBV.c: 284: SPBRG = 25;
+   700  03B4  1683               	bsf	3,5	;RP0=1, select bank1
+   701  03B5  0099               	movwf	25	;volatile
+   702                           
+   703                           ;FMX-DBV.c: 285: RCSTA = 0x00;
+   704  03B6  1283               	bcf	3,5	;RP0=0, select bank0
+   705  03B7  0198               	clrf	24	;volatile
+   706                           
+   707                           ;FMX-DBV.c: 286: TXSTA = 0x00;
+   708  03B8  1683               	bsf	3,5	;RP0=1, select bank1
+   709  03B9  0198               	clrf	24	;volatile
+   710                           
+   711                           ;FMX-DBV.c: 287: SREN = 0;
+   712  03BA  1283               	bcf	3,5	;RP0=0, select bank0
+   713  03BB  1298               	bcf	24,5
+   714                           
+   715                           ;FMX-DBV.c: 288: CSRC = 0;
+   716  03BC  1683               	bsf	3,5	;RP0=1, select bank1
+   717  03BD  1398               	bcf	24,7
+   718                           
+   719                           ;FMX-DBV.c: 289: SYNC = 0;
+   720  03BE  1218               	bcf	24,4
+   721                           
+   722                           ;FMX-DBV.c: 290: BRGH = 1;
+   723  03BF  1518               	bsf	24,2
+   724                           
+   725                           ;FMX-DBV.c: 291: CREN = 1;
+   726  03C0  1283               	bcf	3,5	;RP0=0, select bank0
+   727  03C1  1618               	bsf	24,4
+   728                           
+   729                           ;FMX-DBV.c: 292: TXEN = 1;
+   730  03C2  1683               	bsf	3,5	;RP0=1, select bank1
+   731  03C3  1698               	bsf	24,5
+   732                           
+   733                           ;FMX-DBV.c: 293: SPEN = 1;
+   734  03C4  1283               	bcf	3,5	;RP0=0, select bank0
+   735  03C5  1798               	bsf	24,7
+   736                           
+   737                           ;FMX-DBV.c: 296: OPTION_REG = 0x00;
+   738  03C6  1683               	bsf	3,5	;RP0=1, select bank1
+   739  03C7  0181               	clrf	1	;volatile
+   740                           
+   741                           ;FMX-DBV.c: 297: PIR1 = 0x00;
+   742  03C8  1283               	bcf	3,5	;RP0=0, select bank0
+   743  03C9  018C               	clrf	12	;volatile
+   744                           
+   745                           ;FMX-DBV.c: 298: PIE1 = 0x00;
+   746  03CA  1683               	bsf	3,5	;RP0=1, select bank1
+   747  03CB  018C               	clrf	12	;volatile
+   748                           
+   749                           ;FMX-DBV.c: 300: TMR1IE = 1;
+   750  03CC  140C               	bsf	12,0
+   751                           
+   752                           ;FMX-DBV.c: 301: TMR1ON = 0;
+   753  03CD  1283               	bcf	3,5	;RP0=0, select bank0
+   754  03CE  1010               	bcf	16,0
+   755                           
+   756                           ;FMX-DBV.c: 302: TMR2IE = 1;
+   757  03CF  1683               	bsf	3,5	;RP0=1, select bank1
+   758  03D0  148C               	bsf	12,1
+   759                           
+   760                           ;FMX-DBV.c: 303: TMR2ON = 1;
+   761  03D1  1283               	bcf	3,5	;RP0=0, select bank0
+   762  03D2  1512               	bsf	18,2
+   763                           
+   764                           ;FMX-DBV.c: 305: RCIE = 1;
+   765  03D3  1683               	bsf	3,5	;RP0=1, select bank1
+   766  03D4  168C               	bsf	12,5
+   767                           
+   768                           ;FMX-DBV.c: 306: INTCON = 0x00;
+   769  03D5  018B               	clrf	11	;volatile
+   770  03D6  300A               	movlw	10
+   771                           
+   772                           ;FMX-DBV.c: 307: PEIE = 1;
+   773  03D7  170B               	bsf	11,6
+   774                           
+   775                           ;FMX-DBV.c: 308: INTE = 1;
+   776  03D8  160B               	bsf	11,4
+   777                           
+   778                           ;FMX-DBV.c: 310: Create_Task(Task_1_100ms, 10, 1);
+   779  03D9  1283               	bcf	3,5	;RP0=0, select bank0
+   780  03DA  00D5               	movwf	?_Create_Task
+   781  03DB  3001               	movlw	(fp__Task_1_100ms-fpbase)& (0+255)
+   782  03DC  01D6               	clrf	?_Create_Task+1
+   783  03DD  01D7               	clrf	?_Create_Task+2
+   784  03DE  0AD7               	incf	?_Create_Task+2,f
+   785  03DF  01D8               	clrf	?_Create_Task+3
+   786  03E0  254D               	fcall	_Create_Task
+   787                           
+   788                           ;FMX-DBV.c: 311: Create_Task(Task_2_100ms, 10, 1);
+   789  03E1  300A               	movlw	10
+   790  03E2  00D5               	movwf	?_Create_Task
+   791  03E3  3002               	movlw	(fp__Task_2_100ms-fpbase)& (0+255)
+   792  03E4  01D6               	clrf	?_Create_Task+1
+   793  03E5  01D7               	clrf	?_Create_Task+2
+   794  03E6  0AD7               	incf	?_Create_Task+2,f
+   795  03E7  01D8               	clrf	?_Create_Task+3
+   796  03E8  254D               	fcall	_Create_Task
+   797                           
+   798                           ;FMX-DBV.c: 312: Create_Task(Task_3_500ms, 50, 1);
+   799  03E9  3032               	movlw	50
+   800  03EA  00D5               	movwf	?_Create_Task
+   801  03EB  3003               	movlw	(fp__Task_3_500ms-fpbase)& (0+255)
+   802  03EC  01D6               	clrf	?_Create_Task+1
+   803  03ED  01D7               	clrf	?_Create_Task+2
+   804  03EE  0AD7               	incf	?_Create_Task+2,f
+   805  03EF  01D8               	clrf	?_Create_Task+3
+   806  03F0  254D               	fcall	_Create_Task
+   807                           
+   808                           ;FMX-DBV.c: 314: VehV_vLim = eeprom_read(0x00);
+   809  03F1  3000               	movlw	0
+   810  03F2  25B9               	fcall	_eeprom_read
+   811  03F3  1283               	bcf	3,5	;RP0=0, select bank0
+   812  03F4  00E1               	movwf	_VehV_vLim
+   813                           
+   814                           ;FMX-DBV.c: 315: VehV_vRef = eeprom_read(0x03);
+   815  03F5  3003               	movlw	3
+   816  03F6  25B9               	fcall	_eeprom_read
+   817  03F7  1283               	bcf	3,5	;RP0=0, select bank0
+   818  03F8  00DF               	movwf	_VehV_vRef
+   819                           
+   820                           ;FMX-DBV.c: 316: VehV_tiSig = (eeprom_read(0x01) << 8)+ eeprom_read(0x02);
+   821  03F9  3002               	movlw	2
+   822  03FA  25B9               	fcall	_eeprom_read
+   823  03FB  1283               	bcf	3,5	;RP0=0, select bank0
+   824  03FC  00DC               	movwf	??_main
+   825  03FD  3001               	movlw	1
+   826  03FE  25B9               	fcall	_eeprom_read
+   827  03FF  1283               	bcf	3,5	;RP0=0, select bank0
+   828  0400  00DE               	movwf	_VehV_tiSig+1
+   829  0401  085C               	movf	??_main,w
+   830  0402  00DD               	movwf	_VehV_tiSig
+   831                           
+   832                           ;FMX-DBV.c: 317: VehSpd_numDly = eeprom_read(0x04);
+   833  0403  3004               	movlw	4
+   834  0404  25B9               	fcall	_eeprom_read
+   835  0405  1283               	bcf	3,5	;RP0=0, select bank0
+   836  0406  00E0               	movwf	_VehSpd_numDly
+   837                           
+   838                           ;FMX-DBV.c: 319: if(VehV_tiSig == 0xFFFF)
+   839  0407  0A5D               	incf	_VehV_tiSig,w
+   840  0408  1903               	skipnz
+   841  0409  0A5E               	incf	_VehV_tiSig+1,w
+   842  040A  1D03               	skipz
+   843  040B  2C3B               	goto	l4354
+   844                           
+   845                           ;FMX-DBV.c: 320: {
+   846                           ;FMX-DBV.c: 321: VehV_tiSig = 0x40CC;
+   847  040C  30CC               	movlw	204
+   848  040D  00DD               	movwf	_VehV_tiSig
+   849  040E  3040               	movlw	64
+   850  040F  00DE               	movwf	_VehV_tiSig+1
+   851                           
+   852                           ;FMX-DBV.c: 322: VehV_vRef = 0x3C;
+   853  0410  303C               	movlw	60
+   854  0411  00DF               	movwf	_VehV_vRef
+   855                           
+   856                           ;FMX-DBV.c: 323: VehV_vLim = 0x50;
+   857  0412  3050               	movlw	80
+   858  0413  00E1               	movwf	_VehV_vLim
+   859                           
+   860                           ;FMX-DBV.c: 324: VehSpd_numDly = 0;
+   861  0414  01E0               	clrf	_VehSpd_numDly
+   862  0415  2C3B               	goto	l4354
+   863  0416                     l4326:	
+   864                           
+   865                           ;FMX-DBV.c: 330: {
+   866                           ;FMX-DBV.c: 331: VehSpd_ctDlyThres = 0;
+   867  0416  01BB               	clrf	_VehSpd_ctDlyThres
+   868  0417  2C20               	goto	L4
+   869  0418                     l4328:	
+   870                           ;FMX-DBV.c: 332: }
+   871                           ;FMX-DBV.c: 333: break;
+   872                           
+   873                           
+   874                           ;FMX-DBV.c: 336: {
+   875                           ;FMX-DBV.c: 337: VehSpd_ctDlyThres = 20;
+   876  0418  3014               	movlw	20
+   877  0419  2C1F               	goto	L12
+   878  041A                     l4330:	
+   879                           ;FMX-DBV.c: 338: }
+   880                           ;FMX-DBV.c: 339: break;
+   881                           
+   882                           
+   883                           ;FMX-DBV.c: 342: {
+   884                           ;FMX-DBV.c: 343: VehSpd_ctDlyThres = 40;
+   885  041A  3028               	movlw	40
+   886  041B  2C1F               	goto	L12
+   887  041C                     l4332:	
+   888                           ;FMX-DBV.c: 344: }
+   889                           ;FMX-DBV.c: 345: break;
+   890                           
+   891                           
+   892                           ;FMX-DBV.c: 348: {
+   893                           ;FMX-DBV.c: 349: VehSpd_ctDlyThres = 120;
+   894  041C  3078               	movlw	120
+   895  041D  2C1F               	goto	L12
+   896  041E                     l4334:	
+   897                           ;FMX-DBV.c: 350: }
+   898                           ;FMX-DBV.c: 351: break;
+   899                           
+   900                           
+   901                           ;FMX-DBV.c: 354: {
+   902                           ;FMX-DBV.c: 355: VehSpd_ctDlyThres = 240;
+   903  041E  30F0               	movlw	240
+   904  041F                     L12:	
+   905  041F  00BB               	movwf	_VehSpd_ctDlyThres
+   906  0420                     L4:	
+   907  0420  01BC               	clrf	_VehSpd_ctDlyThres+1
+   908                           
+   909                           ;FMX-DBV.c: 356: }
+   910                           ;FMX-DBV.c: 357: break;
+   911  0421  2C46               	goto	l523
+   912  0422                     l4336:	
+   913                           
+   914                           ;FMX-DBV.c: 360: {
+   915                           ;FMX-DBV.c: 361: VehSpd_ctDlyThres = 360;
+   916  0422  3068               	movlw	104
+   917  0423  2C25               	goto	L5
+   918  0424                     l4338:	
+   919                           ;FMX-DBV.c: 362: }
+   920                           ;FMX-DBV.c: 363: break;
+   921                           
+   922                           
+   923                           ;FMX-DBV.c: 366: {
+   924                           ;FMX-DBV.c: 367: VehSpd_ctDlyThres = 480;
+   925  0424  30E0               	movlw	224
+   926  0425                     L5:	
+   927  0425  00BB               	movwf	_VehSpd_ctDlyThres
+   928  0426  3001               	movlw	1
+   929  0427  2C39               	goto	L11
+   930  0428                     l4340:	
+   931                           ;FMX-DBV.c: 368: }
+   932                           ;FMX-DBV.c: 369: break;
+   933                           
+   934                           
+   935                           ;FMX-DBV.c: 372: {
+   936                           ;FMX-DBV.c: 373: VehSpd_ctDlyThres = 600;
+   937  0428  3058               	movlw	88
+   938  0429  2C2B               	goto	L15
+   939  042A                     l4342:	
+   940                           ;FMX-DBV.c: 374: }
+   941                           ;FMX-DBV.c: 375: break;
+   942                           
+   943                           
+   944                           ;FMX-DBV.c: 378: {
+   945                           ;FMX-DBV.c: 379: VehSpd_ctDlyThres = 720;
+   946  042A  30D0               	movlw	208
+   947  042B                     L15:	
+   948  042B  00BB               	movwf	_VehSpd_ctDlyThres
+   949  042C  3002               	movlw	2
+   950  042D  2C39               	goto	L11
+   951  042E                     l4344:	
+   952                           ;FMX-DBV.c: 380: }
+   953                           ;FMX-DBV.c: 381: break;
+   954                           
+   955                           
+   956                           ;FMX-DBV.c: 384: {
+   957                           ;FMX-DBV.c: 385: VehSpd_ctDlyThres = 840;
+   958  042E  3048               	movlw	72
+   959  042F  2C31               	goto	L13
+   960  0430                     l4346:	
+   961                           ;FMX-DBV.c: 386: }
+   962                           ;FMX-DBV.c: 387: break;
+   963                           
+   964                           
+   965                           ;FMX-DBV.c: 390: {
+   966                           ;FMX-DBV.c: 391: VehSpd_ctDlyThres = 960;
+   967  0430  30C0               	movlw	192
+   968  0431                     L13:	
+   969  0431  00BB               	movwf	_VehSpd_ctDlyThres
+   970  0432  3003               	movlw	3
+   971  0433  2C39               	goto	L11
+   972  0434                     l4348:	
+   973                           ;FMX-DBV.c: 392: }
+   974                           ;FMX-DBV.c: 393: break;
+   975                           
+   976                           
+   977                           ;FMX-DBV.c: 396: {
+   978                           ;FMX-DBV.c: 397: VehSpd_ctDlyThres = 1080;
+   979  0434  3038               	movlw	56
+   980  0435  2C37               	goto	L14
+   981  0436                     l4350:	
+   982                           ;FMX-DBV.c: 398: }
+   983                           ;FMX-DBV.c: 399: break;
+   984                           
+   985                           
+   986                           ;FMX-DBV.c: 402: {
+   987                           ;FMX-DBV.c: 403: VehSpd_ctDlyThres = 1200;
+   988  0436  30B0               	movlw	176
+   989  0437                     L14:	
+   990  0437  00BB               	movwf	_VehSpd_ctDlyThres
+   991  0438  3004               	movlw	4
+   992  0439                     L11:	
+   993  0439  00BC               	movwf	_VehSpd_ctDlyThres+1
+   994                           
+   995                           ;FMX-DBV.c: 404: }
+   996                           ;FMX-DBV.c: 405: break;
+   997  043A  2C46               	goto	l523
+   998  043B                     l4354:	
+   999  043B  0860               	movf	_VehSpd_numDly,w
+  1000                           
+  1001                           ; Switch size 1, requested type "space"
+  1002                           ; Number of cases is 12, Range of values is 0 to 11
+  1003                           ; switch strategies available:
+  1004                           ; Name         Instructions Cycles
+  1005                           ; direct_byte           18     6 (fixed)
+  1006                           ; simple_byte           37    19 (average)
+  1007                           ; jumptable            260     6 (fixed)
+  1008                           ; rangetable            16     6 (fixed)
+  1009                           ; spacedrange           30     9 (fixed)
+  1010                           ; locatedrange          12     3 (fixed)
+  1011                           ;	Chosen strategy is direct_byte
+  1012  043C  0084               	movwf	4
+  1013  043D  300C               	movlw	12
+  1014  043E  0204               	subwf	4,w
+  1015  043F  1803               	skipnc
+  1016  0440  2C36               	goto	l4350
+  1017  0441  3000               	movlw	high S4416
+  1018  0442  008A               	movwf	10
+  1019  0443  3011               	movlw	low S4416
+  1020  0444  0704               	addwf	4,w
+  1021  0445  0082               	movwf	2
+  1022  0446                     l523:	
+  1023  0446  30A0               	movlw	160
+  1024                           
+  1025                           ;FMX-DBV.c: 409: GIE = 1;
+  1026  0447  178B               	bsf	11,7
+  1027                           
+  1028                           ;FMX-DBV.c: 411: EEADR = 0xA0;
+  1029  0448  1683               	bsf	3,5	;RP0=1, select bank1
+  1030  0449  009B               	movwf	27	;volatile
+  1031  044A                     l4358:	
+  1032                           
+  1033                           ;FMX-DBV.c: 414: {
+  1034                           ;FMX-DBV.c: 415: Dispatch_Tasks();
+  1035  044A  2494               	fcall	_Dispatch_Tasks
+  1036  044B  2C4A               	goto	l4358
+  1037  044C                     __end_of_main:	
+  1038                           
+  1039                           	psect	swtext1
+  1040  0011                     __pswtext1:	
+  1041  0011                     S4416:	
+  1042  0011  2C16               	ljmp	l4326
+  1043  0012  2C18               	ljmp	l4328
+  1044  0013  2C1A               	ljmp	l4330
+  1045  0014  2C1C               	ljmp	l4332
+  1046  0015  2C1E               	ljmp	l4334
+  1047  0016  2C22               	ljmp	l4336
+  1048  0017  2C24               	ljmp	l4338
+  1049  0018  2C28               	ljmp	l4340
+  1050  0019  2C2A               	ljmp	l4342
+  1051  001A  2C2E               	ljmp	l4344
+  1052  001B  2C30               	ljmp	l4346
+  1053  001C  2C34               	ljmp	l4348
+  1054                           
+  1055                           	psect	text430
+  1056  0494                     __ptext430:	
+  1057 ;; =============== function _main ends ============
+  1058                           
+  1059                           
+  1060 ;; *************** function _Dispatch_Tasks *****************
+  1061 ;; Defined at:
+  1062 ;;		line 13 in file "C:\Users\Gamer\Desktop\Tony\Work\03_FleetMax\Projects\FMX_01_RSL-DBV\03_Embedded\03_Firmware\V4\sch
+      +edule.c"
+  1063 ;; Parameters:    Size  Location     Type
+  1064 ;;		None
+  1065 ;; Auto vars:     Size  Location     Type
+  1066 ;;  i               1   21[BANK0 ] unsigned char 
+  1067 ;; Return value:  Size  Location     Type
+  1068 ;;		None               void
+  1069 ;; Registers used:
+  1070 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1071 ;; Tracked objects:
+  1072 ;;		On entry : 40/20
+  1073 ;;		On exit  : 60/0
+  1074 ;;		Unchanged: FFE00/0
+  1075 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1076 ;;      Params:         0       0       0       0
+  1077 ;;      Locals:         0       1       0       0
+  1078 ;;      Temps:          0       2       0       0
+  1079 ;;      Totals:         0       3       0       0
+  1080 ;;Total ram usage:        3 bytes
+  1081 ;; Hardware stack levels used:    1
+  1082 ;; Hardware stack levels required when called:    4
+  1083 ;; This function calls:
+  1084 ;;		___bmul
+  1085 ;;		_Task_3_500ms
+  1086 ;;		_Task_2_100ms
+  1087 ;;		_Task_1_100ms
+  1088 ;; This function is called by:
+  1089 ;;		_main
+  1090 ;; This function uses a non-reentrant model
+  1091 ;;
+  1092  0494                     _Dispatch_Tasks:	
+  1093  0494                     l4224:	
+  1094                           ;schedule.c: 14: unsigned char i;
+  1095                           ;schedule.c: 16: while (elapsed_ticks > 0)
+  1096                           
+  1097                           ; Regs used in _Dispatch_Tasks: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1098                           
+  1099  0494  1283               	bcf	3,5	;RP0=0, select bank0
+  1100  0495  0840               	movf	_elapsed_ticks+1,w	;volatile
+  1101  0496  043F               	iorwf	_elapsed_ticks,w	;volatile
+  1102  0497  1903               	btfsc	3,2
+  1103  0498  0008               	return
+  1104                           
+  1105                           ;schedule.c: 17: {
+  1106                           ;schedule.c: 20: for (i = 0; i < 3; i++)
+  1107  0499  01DB               	clrf	Dispatch_Tasks@i
+  1108  049A                     l4214:	
+  1109                           
+  1110                           ;schedule.c: 21: {
+  1111                           ;schedule.c: 23: if (--tasks[i].delay == 0)
+  1112  049A  3005               	movlw	5
+  1113  049B  00D2               	movwf	?___bmul
+  1114  049C  085B               	movf	Dispatch_Tasks@i,w
+  1115  049D  25DF               	fcall	___bmul
+  1116  049E  3E23               	addlw	(_tasks+3)& (0+255)
+  1117  049F  0084               	movwf	4
+  1118  04A0  3001               	movlw	1
+  1119  04A1  1383               	bcf	3,7	;select IRP bank0
+  1120  04A2  0280               	subwf	0,f
+  1121  04A3  0F84               	incfsz	4,f
+  1122  04A4  3000               	movlw	0
+  1123  04A5  1C03               	skipc
+  1124  04A6  0380               	decf	0,f
+  1125  04A7  0280               	subwf	0,f
+  1126  04A8  0384               	decf	4,f
+  1127  04A9  0800               	movf	0,w
+  1128  04AA  0A84               	incf	4,f
+  1129  04AB  0400               	iorwf	0,w
+  1130  04AC  1D03               	skipz
+  1131  04AD  2CCC               	goto	l4218
+  1132                           
+  1133                           ;schedule.c: 24: {
+  1134                           ;schedule.c: 25: tasks[i].delay = tasks[i].period;
+  1135  04AE  3005               	movlw	5
+  1136  04AF  00D2               	movwf	?___bmul
+  1137  04B0  085B               	movf	Dispatch_Tasks@i,w
+  1138  04B1  25DF               	fcall	___bmul
+  1139  04B2  3E21               	addlw	(_tasks+1)& (0+255)
+  1140  04B3  0084               	movwf	4
+  1141  04B4  0800               	movf	0,w
+  1142  04B5  00D9               	movwf	??_Dispatch_Tasks
+  1143  04B6  0A84               	incf	4,f
+  1144  04B7  0800               	movf	0,w
+  1145  04B8  00DA               	movwf	??_Dispatch_Tasks+1
+  1146  04B9  3005               	movlw	5
+  1147  04BA  00D2               	movwf	?___bmul
+  1148  04BB  085B               	movf	Dispatch_Tasks@i,w
+  1149  04BC  25DF               	fcall	___bmul
+  1150  04BD  3E23               	addlw	(_tasks+3)& (0+255)
+  1151  04BE  0084               	movwf	4
+  1152  04BF  0859               	movf	??_Dispatch_Tasks,w
+  1153  04C0  0080               	movwf	0
+  1154  04C1  0A84               	incf	4,f
+  1155  04C2  085A               	movf	??_Dispatch_Tasks+1,w
+  1156  04C3  0080               	movwf	0
+  1157                           
+  1158                           ;schedule.c: 26: tasks[i].task();
+  1159  04C4  3005               	movlw	5
+  1160  04C5  00D2               	movwf	?___bmul
+  1161  04C6  085B               	movf	Dispatch_Tasks@i,w
+  1162  04C7  25DF               	fcall	___bmul
+  1163  04C8  3E20               	addlw	_tasks& (0+255)
+  1164  04C9  0084               	movwf	4
+  1165  04CA  0800               	movf	0,w
+  1166  04CB  2100               	fcall	fptable
+  1167  04CC                     l4218:	
+  1168  04CC  3003               	movlw	3
+  1169  04CD  1283               	bcf	3,5	;RP0=0, select bank0
+  1170  04CE  0ADB               	incf	Dispatch_Tasks@i,f
+  1171  04CF  025B               	subwf	Dispatch_Tasks@i,w
+  1172  04D0  1C03               	skipc
+  1173  04D1  2C9A               	goto	l4214
+  1174                           
+  1175                           ;schedule.c: 27: }
+  1176                           ;schedule.c: 28: }
+  1177                           ;schedule.c: 29: --elapsed_ticks;
+  1178  04D2  3001               	movlw	1
+  1179  04D3  02BF               	subwf	_elapsed_ticks,f	;volatile
+  1180  04D4  3000               	movlw	0
+  1181  04D5  1C03               	skipc
+  1182  04D6  03C0               	decf	_elapsed_ticks+1,f	;volatile
+  1183  04D7  02C0               	subwf	_elapsed_ticks+1,f	;volatile
+  1184  04D8  2C94               	goto	l4224
+  1185  04D9                     __end_of_Dispatch_Tasks:	
+  1186                           
+  1187                           	psect	text431
+  1188  054D                     __ptext431:	
+  1189 ;; =============== function _Dispatch_Tasks ends ============
+  1190                           
+  1191                           
+  1192 ;; *************** function _Create_Task *****************
+  1193 ;; Defined at:
+  1194 ;;		line 37 in file "C:\Users\Gamer\Desktop\Tony\Work\03_FleetMax\Projects\FMX_01_RSL-DBV\03_Embedded\03_Firmware\V4\sch
+      +edule.c"
+  1195 ;; Parameters:    Size  Location     Type
+  1196 ;;  function_poi    1    wreg     PTR FTN()void 
+  1197 ;;		 -> Task_3_500ms(0), Task_2_100ms(0), Task_1_100ms(0), 
+  1198 ;;  period          2   15[BANK0 ] unsigned int 
+  1199 ;;  delay           2   17[BANK0 ] unsigned int 
+  1200 ;; Auto vars:     Size  Location     Type
+  1201 ;;  function_poi    1   21[BANK0 ] PTR FTN()void 
+  1202 ;;		 -> Task_3_500ms(0), Task_2_100ms(0), Task_1_100ms(0), 
+  1203 ;; Return value:  Size  Location     Type
+  1204 ;;		None               void
+  1205 ;; Registers used:
+  1206 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1207 ;; Tracked objects:
+  1208 ;;		On entry : 17F/0
+  1209 ;;		On exit  : 17F/0
+  1210 ;;		Unchanged: FFE80/0
+  1211 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1212 ;;      Params:         0       4       0       0
+  1213 ;;      Locals:         0       1       0       0
+  1214 ;;      Temps:          0       2       0       0
+  1215 ;;      Totals:         0       7       0       0
+  1216 ;;Total ram usage:        7 bytes
+  1217 ;; Hardware stack levels used:    1
+  1218 ;; Hardware stack levels required when called:    3
+  1219 ;; This function calls:
+  1220 ;;		___bmul
+  1221 ;; This function is called by:
+  1222 ;;		_main
+  1223 ;; This function uses a non-reentrant model
+  1224 ;;
+  1225  054D                     _Create_Task:	
+  1226                           
+  1227                           ; Regs used in _Create_Task: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1228                           ;Create_Task@function_pointer stored from wreg
+  1229  054D  00DB               	movwf	Create_Task@function_pointer
+  1230                           
+  1231                           ;schedule.c: 38: static unsigned char index = 0;
+  1232                           ;schedule.c: 41: tasks[index].task = function_pointer;
+  1233  054E  3005               	movlw	5
+  1234  054F  00D2               	movwf	?___bmul
+  1235  0550  0841               	movf	Create_Task@index,w
+  1236  0551  25DF               	fcall	___bmul
+  1237  0552  3E20               	addlw	_tasks& (0+255)
+  1238  0553  0084               	movwf	4
+  1239  0554  085B               	movf	Create_Task@function_pointer,w
+  1240  0555  0080               	movwf	0
+  1241                           
+  1242                           ;schedule.c: 42: tasks[index].period = period;
+  1243  0556  3005               	movlw	5
+  1244  0557  00D2               	movwf	?___bmul
+  1245  0558  0841               	movf	Create_Task@index,w
+  1246  0559  25DF               	fcall	___bmul
+  1247  055A  3E21               	addlw	(_tasks+1)& (0+255)
+  1248  055B  0084               	movwf	4
+  1249  055C  0855               	movf	Create_Task@period,w
+  1250  055D  0080               	movwf	0
+  1251  055E  0A84               	incf	4,f
+  1252  055F  0856               	movf	Create_Task@period+1,w
+  1253  0560  0080               	movwf	0
+  1254                           
+  1255                           ;schedule.c: 44: tasks[index].delay = delay + 1;
+  1256  0561  0857               	movf	Create_Task@delay,w
+  1257  0562  3E01               	addlw	1
+  1258  0563  00D9               	movwf	??_Create_Task
+  1259  0564  0858               	movf	Create_Task@delay+1,w
+  1260  0565  1803               	skipnc
+  1261  0566  3E01               	addlw	1
+  1262  0567  00DA               	movwf	??_Create_Task+1
+  1263  0568  3005               	movlw	5
+  1264  0569  00D2               	movwf	?___bmul
+  1265  056A  0841               	movf	Create_Task@index,w
+  1266  056B  25DF               	fcall	___bmul
+  1267  056C  3E23               	addlw	(_tasks+3)& (0+255)
+  1268  056D  0084               	movwf	4
+  1269  056E  0859               	movf	??_Create_Task,w
+  1270  056F  0080               	movwf	0
+  1271  0570  0A84               	incf	4,f
+  1272  0571  085A               	movf	??_Create_Task+1,w
+  1273  0572  0080               	movwf	0
+  1274                           
+  1275                           ;schedule.c: 45: ++index;
+  1276  0573  0AC1               	incf	Create_Task@index,f
+  1277  0574  0008               	return
+  1278  0575                     __end_of_Create_Task:	
+  1279                           
+  1280                           	psect	text432
+  1281  0575                     __ptext432:	
+  1282 ;; =============== function _Create_Task ends ============
+  1283                           
+  1284                           
+  1285 ;; *************** function _Task_3_500ms *****************
+  1286 ;; Defined at:
+  1287 ;;		line 207 in file "C:\Users\Gamer\Desktop\Tony\Work\03_FleetMax\Projects\FMX_01_RSL-DBV\03_Embedded\03_Firmware\V4\FM
+      +X-DBV.c"
+  1288 ;; Parameters:    Size  Location     Type
+  1289 ;;		None
+  1290 ;; Auto vars:     Size  Location     Type
+  1291 ;;		None
+  1292 ;; Return value:  Size  Location     Type
+  1293 ;;		None               void
+  1294 ;; Registers used:
+  1295 ;;		wreg, status,2, status,0
+  1296 ;; Tracked objects:
+  1297 ;;		On entry : 160/0
+  1298 ;;		On exit  : 160/0
+  1299 ;;		Unchanged: FFE9F/0
+  1300 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1301 ;;      Params:         0       0       0       0
+  1302 ;;      Locals:         0       0       0       0
+  1303 ;;      Temps:          0       0       0       0
+  1304 ;;      Totals:         0       0       0       0
+  1305 ;;Total ram usage:        0 bytes
+  1306 ;; Hardware stack levels used:    1
+  1307 ;; Hardware stack levels required when called:    2
+  1308 ;; This function calls:
+  1309 ;;		Nothing
+  1310 ;; This function is called by:
+  1311 ;;		_main
+  1312 ;;		_Dispatch_Tasks
+  1313 ;; This function uses a non-reentrant model
+  1314 ;;
+  1315  0575                     _Task_3_500ms:	
+  1316                           
+  1317                           ;FMX-DBV.c: 208: if((VehV_vRaw == 0)&&(VehSpd_numDly != 0x00))
+  1318                           
+  1319                           ; Regs used in _Task_3_500ms: [wreg+status,2+status,0]
+  1320  0575  083E               	movf	_VehV_vRaw+1,w	;volatile
+  1321  0576  043D               	iorwf	_VehV_vRaw,w	;volatile
+  1322  0577  1D03               	skipz
+  1323  0578  2D8B               	goto	l3686
+  1324  0579  0860               	movf	_VehSpd_numDly,w
+  1325  057A  1903               	btfsc	3,2
+  1326  057B  2D8B               	goto	l3686
+  1327                           
+  1328                           ;FMX-DBV.c: 209: {
+  1329                           ;FMX-DBV.c: 210: if(VehSpd_ctDly < VehSpd_ctDlyThres)
+  1330  057C  083C               	movf	_VehSpd_ctDlyThres+1,w
+  1331  057D  023A               	subwf	_VehSpd_ctDly+1,w
+  1332  057E  1D03               	skipz
+  1333  057F  2D82               	goto	u965
+  1334  0580  083B               	movf	_VehSpd_ctDlyThres,w
+  1335  0581  0239               	subwf	_VehSpd_ctDly,w
+  1336  0582                     u965:	
+  1337  0582  1803               	skipnc
+  1338  0583  2D88               	goto	l510
+  1339                           
+  1340                           ;FMX-DBV.c: 211: {
+  1341                           ;FMX-DBV.c: 212: VehSpd_ctDly++;
+  1342  0584  0AB9               	incf	_VehSpd_ctDly,f
+  1343  0585  1903               	skipnz
+  1344  0586  0ABA               	incf	_VehSpd_ctDly+1,f
+  1345                           
+  1346                           ;FMX-DBV.c: 213: }
+  1347  0587  2D8E               	goto	l3688
+  1348  0588                     l510:	
+  1349                           
+  1350                           ;FMX-DBV.c: 214: else
+  1351                           ;FMX-DBV.c: 215: {
+  1352                           ;FMX-DBV.c: 216: Dev_stTmprDetActv = 1;
+  1353  0588  01FD               	clrf	_Dev_stTmprDetActv
+  1354  0589  0AFD               	incf	_Dev_stTmprDetActv,f
+  1355  058A  2D8E               	goto	l3688
+  1356  058B                     l3686:	
+  1357                           
+  1358                           ;FMX-DBV.c: 219: else
+  1359                           ;FMX-DBV.c: 220: {
+  1360                           ;FMX-DBV.c: 221: VehSpd_ctDly = 0;
+  1361  058B  01B9               	clrf	_VehSpd_ctDly
+  1362  058C  01BA               	clrf	_VehSpd_ctDly+1
+  1363                           
+  1364                           ;FMX-DBV.c: 222: Dev_stTmprDetActv = 0;
+  1365  058D  01FD               	clrf	_Dev_stTmprDetActv
+  1366  058E                     l3688:	
+  1367                           
+  1368                           ;FMX-DBV.c: 223: }
+  1369                           ;FMX-DBV.c: 225: if(VehV_stSpdLim == 0)
+  1370  058E  08C5               	movf	_VehV_stSpdLim,f
+  1371  058F  1D03               	skipz
+  1372  0590  2D98               	goto	l3694
+  1373                           
+  1374                           ;FMX-DBV.c: 226: {
+  1375                           ;FMX-DBV.c: 227: if(Dev_stTmprDetActv)
+  1376  0591  087D               	movf	_Dev_stTmprDetActv,w
+  1377  0592  1903               	btfsc	3,2
+  1378  0593  2D97               	goto	l514
+  1379                           
+  1380                           ;FMX-DBV.c: 228: {
+  1381                           ;FMX-DBV.c: 229: RA1 = ~RA1;
+  1382  0594  3002               	movlw	2
+  1383  0595  0685               	xorwf	5,f
+  1384                           
+  1385                           ;FMX-DBV.c: 230: }
+  1386  0596  2D98               	goto	l3694
+  1387  0597                     l514:	
+  1388                           
+  1389                           ;FMX-DBV.c: 231: else
+  1390                           ;FMX-DBV.c: 232: {
+  1391                           ;FMX-DBV.c: 233: RA1 = 0;
+  1392  0597  1085               	bcf	5,1
+  1393  0598                     l3694:	
+  1394                           
+  1395                           ;FMX-DBV.c: 234: }
+  1396                           ;FMX-DBV.c: 235: }
+  1397                           ;FMX-DBV.c: 237: if(VehV_vRaw == 0)
+  1398  0598  083E               	movf	_VehV_vRaw+1,w	;volatile
+  1399  0599  043D               	iorwf	_VehV_vRaw,w	;volatile
+  1400  059A  1903               	btfsc	3,2
+  1401                           
+  1402                           ;FMX-DBV.c: 238: {
+  1403                           ;FMX-DBV.c: 239: RA0 = 1;
+  1404  059B  1405               	bsf	5,0
+  1405  059C  0008               	return
+  1406  059D                     __end_of_Task_3_500ms:	
+  1407                           
+  1408                           	psect	text433
+  1409  04D9                     __ptext433:	
+  1410 ;; =============== function _Task_3_500ms ends ============
+  1411                           
+  1412                           
+  1413 ;; *************** function _Task_2_100ms *****************
+  1414 ;; Defined at:
+  1415 ;;		line 177 in file "C:\Users\Gamer\Desktop\Tony\Work\03_FleetMax\Projects\FMX_01_RSL-DBV\03_Embedded\03_Firmware\V4\FM
+      +X-DBV.c"
+  1416 ;; Parameters:    Size  Location     Type
+  1417 ;;		None
+  1418 ;; Auto vars:     Size  Location     Type
+  1419 ;;		None
+  1420 ;; Return value:  Size  Location     Type
+  1421 ;;		None               void
+  1422 ;; Registers used:
+  1423 ;;		wreg, status,2
+  1424 ;; Tracked objects:
+  1425 ;;		On entry : 160/0
+  1426 ;;		On exit  : 60/0
+  1427 ;;		Unchanged: FFE00/0
+  1428 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1429 ;;      Params:         0       0       0       0
+  1430 ;;      Locals:         0       0       0       0
+  1431 ;;      Temps:          0       3       0       0
+  1432 ;;      Totals:         0       3       0       0
+  1433 ;;Total ram usage:        3 bytes
+  1434 ;; Hardware stack levels used:    1
+  1435 ;; Hardware stack levels required when called:    2
+  1436 ;; This function calls:
+  1437 ;;		Nothing
+  1438 ;; This function is called by:
+  1439 ;;		_main
+  1440 ;;		_Dispatch_Tasks
+  1441 ;; This function uses a non-reentrant model
+  1442 ;;
+  1443  04D9                     _Task_2_100ms:	
+  1444                           
+  1445                           ;FMX-DBV.c: 179: if(VehV_vRaw > VehV_vLim)
+  1446                           
+  1447                           ; Regs used in _Task_2_100ms: [wreg+status,2]
+  1448  04D9  083E               	movf	_VehV_vRaw+1,w	;volatile
+  1449  04DA  3A80               	xorlw	128
+  1450  04DB  3C80               	sublw	128
+  1451  04DC  1D03               	skipz
+  1452  04DD  2CE0               	goto	u905
+  1453  04DE  083D               	movf	_VehV_vRaw,w	;volatile
+  1454  04DF  0261               	subwf	_VehV_vLim,w
+  1455  04E0                     u905:	
+  1456                           
+  1457                           ;FMX-DBV.c: 180: {
+  1458                           ;FMX-DBV.c: 181: RB3 = 0;
+  1459  04E0  1283               	bcf	3,5	;RP0=0, select bank0
+  1460  04E1  1303               	bcf	3,6	;RP1=0, select bank0
+  1461  04E2  1803               	skipnc
+  1462  04E3  2CE9               	goto	L16
+  1463  04E4  1186               	bcf	6,3
+  1464                           
+  1465                           ;FMX-DBV.c: 182: RA1 = 1;
+  1466  04E5  1485               	bsf	5,1
+  1467                           
+  1468                           ;FMX-DBV.c: 183: VehV_stSpdLim = 1;
+  1469  04E6  01C5               	clrf	_VehV_stSpdLim
+  1470  04E7  0AC5               	incf	_VehV_stSpdLim,f
+  1471                           
+  1472                           ;FMX-DBV.c: 184: }
+  1473  04E8  0008               	return
+  1474  04E9                     L16:	
+  1475                           ;FMX-DBV.c: 185: else if((VehV_vRaw <= VehV_vLim)&&(VehV_vRaw >= (VehV_vLim - 1)))
+  1476                           
+  1477  04E9  083E               	movf	_VehV_vRaw+1,w	;volatile
+  1478  04EA  3A80               	xorlw	128
+  1479  04EB  3C80               	sublw	128
+  1480  04EC  1D03               	skipz
+  1481  04ED  2CF0               	goto	u915
+  1482  04EE  083D               	movf	_VehV_vRaw,w	;volatile
+  1483  04EF  0261               	subwf	_VehV_vLim,w
+  1484  04F0                     u915:	
+  1485  04F0  1C03               	skipc
+  1486  04F1  2D10               	goto	l3672
+  1487  04F2  1283               	bcf	3,5	;RP0=0, select bank0
+  1488  04F3  1303               	bcf	3,6	;RP1=0, select bank0
+  1489  04F4  0861               	movf	_VehV_vLim,w
+  1490  04F5  3EFF               	addlw	255
+  1491  04F6  00D2               	movwf	??_Task_2_100ms
+  1492  04F7  30FF               	movlw	255
+  1493  04F8  1803               	skipnc
+  1494  04F9  3000               	movlw	0
+  1495  04FA  00D3               	movwf	??_Task_2_100ms+1
+  1496  04FB  083E               	movf	_VehV_vRaw+1,w	;volatile
+  1497  04FC  3A80               	xorlw	128
+  1498  04FD  00D4               	movwf	??_Task_2_100ms+2
+  1499  04FE  0853               	movf	??_Task_2_100ms+1,w
+  1500  04FF  3A80               	xorlw	128
+  1501  0500  0254               	subwf	??_Task_2_100ms+2,w
+  1502  0501  1D03               	skipz
+  1503  0502  2D05               	goto	u925
+  1504  0503  0852               	movf	??_Task_2_100ms,w
+  1505  0504  023D               	subwf	_VehV_vRaw,w	;volatile
+  1506  0505                     u925:	
+  1507  0505  1C03               	skipc
+  1508  0506  2D10               	goto	l3672
+  1509                           
+  1510                           ;FMX-DBV.c: 186: {
+  1511                           ;FMX-DBV.c: 187: RB3 = ~RB3;
+  1512  0507  3008               	movlw	8
+  1513  0508  1283               	bcf	3,5	;RP0=0, select bank0
+  1514  0509  1303               	bcf	3,6	;RP1=0, select bank0
+  1515  050A  0686               	xorwf	6,f
+  1516                           
+  1517                           ;FMX-DBV.c: 188: RA1 = ~RA1;
+  1518  050B  3002               	movlw	2
+  1519  050C  0685               	xorwf	5,f
+  1520                           
+  1521                           ;FMX-DBV.c: 189: VehV_stSpdLim = 1;
+  1522  050D  01C5               	clrf	_VehV_stSpdLim
+  1523  050E  0AC5               	incf	_VehV_stSpdLim,f
+  1524                           
+  1525                           ;FMX-DBV.c: 190: }
+  1526  050F  0008               	return
+  1527  0510                     l3672:	
+  1528                           
+  1529                           ;FMX-DBV.c: 191: else
+  1530                           ;FMX-DBV.c: 192: {
+  1531                           ;FMX-DBV.c: 194: if(Dev_stTmprDetActv)
+  1532  0510  087D               	movf	_Dev_stTmprDetActv,w
+  1533                           
+  1534                           ;FMX-DBV.c: 195: {
+  1535                           ;FMX-DBV.c: 196: RB3 = 0;
+  1536  0511  1283               	bcf	3,5	;RP0=0, select bank0
+  1537  0512  1303               	bcf	3,6	;RP1=0, select bank0
+  1538  0513  1903               	btfsc	3,2
+  1539  0514  2D17               	goto	L17
+  1540  0515  1186               	bcf	6,3
+  1541                           
+  1542                           ;FMX-DBV.c: 197: }
+  1543  0516  2D18               	goto	l3676
+  1544  0517                     L17:	
+  1545                           ;FMX-DBV.c: 198: else
+  1546                           ;FMX-DBV.c: 199: {
+  1547                           ;FMX-DBV.c: 200: RB3 = 1;
+  1548                           
+  1549  0517  1586               	bsf	6,3
+  1550  0518                     l3676:	
+  1551                           
+  1552                           ;FMX-DBV.c: 201: }
+  1553                           ;FMX-DBV.c: 202: VehV_stSpdLim = 0;
+  1554  0518  01C5               	clrf	_VehV_stSpdLim
+  1555  0519  0008               	return
+  1556  051A                     __end_of_Task_2_100ms:	
+  1557                           
+  1558                           	psect	text434
+  1559  0283                     __ptext434:	
+  1560 ;; =============== function _Task_2_100ms ends ============
+  1561                           
+  1562                           
+  1563 ;; *************** function _Task_1_100ms *****************
+  1564 ;; Defined at:
+  1565 ;;		line 10 in file "C:\Users\Gamer\Desktop\Tony\Work\03_FleetMax\Projects\FMX_01_RSL-DBV\03_Embedded\03_Firmware\V4\FMX
+      +-DBV.c"
+  1566 ;; Parameters:    Size  Location     Type
+  1567 ;;		None
+  1568 ;; Auto vars:     Size  Location     Type
+  1569 ;;  chksum          2   14[BANK0 ] unsigned int 
+  1570 ;;  currAddr        1   18[BANK0 ] unsigned char 
+  1571 ;;  i               1   17[BANK0 ] unsigned char 
+  1572 ;;  data            1   16[BANK0 ] unsigned char 
+  1573 ;; Return value:  Size  Location     Type
+  1574 ;;		None               void
+  1575 ;; Registers used:
+  1576 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1577 ;; Tracked objects:
+  1578 ;;		On entry : 160/0
+  1579 ;;		On exit  : 60/20
+  1580 ;;		Unchanged: FFE00/0
+  1581 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1582 ;;      Params:         0       0       0       0
+  1583 ;;      Locals:         0       5       0       0
+  1584 ;;      Temps:          0       0      12       0
+  1585 ;;      Totals:         0       5      12       0
+  1586 ;;Total ram usage:       17 bytes
+  1587 ;; Hardware stack levels used:    1
+  1588 ;; Hardware stack levels required when called:    3
+  1589 ;; This function calls:
+  1590 ;;		_eeprom_write
+  1591 ;;		_transmitByte
+  1592 ;;		_eeprom_read
+  1593 ;;		_Reset_Comm_Timeout
+  1594 ;; This function is called by:
+  1595 ;;		_main
+  1596 ;;		_Dispatch_Tasks
+  1597 ;; This function uses a non-reentrant model
+  1598 ;;
+  1599  0283                     _Task_1_100ms:	
+  1600                           
+  1601                           ;FMX-DBV.c: 11: unsigned char data;
+  1602                           ;FMX-DBV.c: 12: unsigned char currAddr;
+  1603                           ;FMX-DBV.c: 13: unsigned char i;
+  1604                           ;FMX-DBV.c: 14: unsigned int chksum;
+  1605                           ;FMX-DBV.c: 16: if(Rx_complete)
+  1606                           
+  1607                           ; Regs used in _Task_1_100ms: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1608  0283  0844               	movf	_Rx_complete,w
+  1609  0284  1903               	btfsc	3,2
+  1610  0285  2B84               	goto	l4200
+  1611                           
+  1612                           ;FMX-DBV.c: 17: {
+  1613                           ;FMX-DBV.c: 18: RCIE = 0;
+  1614  0286  1683               	bsf	3,5	;RP0=1, select bank1
+  1615  0287  128C               	bcf	12,5
+  1616                           
+  1617                           ;FMX-DBV.c: 19: switch(Rxdata[2])
+  1618  0288  2B78               	goto	l4192
+  1619  0289                     l4102:	
+  1620                           
+  1621                           ;FMX-DBV.c: 22: {
+  1622                           ;FMX-DBV.c: 23: if(Rxdata[1] == 15)
+  1623  0289  0821               	movf	(_Rxdata^(0+128)+1),w	;volatile
+  1624  028A  3A0F               	xorlw	15
+  1625  028B  1D03               	skipz
+  1626  028C  2B05               	goto	l4162
+  1627                           
+  1628                           ;FMX-DBV.c: 24: {
+  1629                           ;FMX-DBV.c: 26: eeprom_write(0x00, Rxdata[3]);
+  1630  028D  0823               	movf	(_Rxdata^(0+128)+3),w	;volatile
+  1631  028E  1283               	bcf	3,5	;RP0=0, select bank0
+  1632  028F  00D2               	movwf	?_eeprom_write
+  1633  0290  3000               	movlw	0
+  1634  0291  259D               	fcall	_eeprom_write
+  1635                           
+  1636                           ;FMX-DBV.c: 27: VehV_vLim = Rxdata[3];
+  1637  0292  0823               	movf	(_Rxdata^(0+128)+3),w	;volatile
+  1638  0293  1283               	bcf	3,5	;RP0=0, select bank0
+  1639  0294  00E1               	movwf	_VehV_vLim
+  1640                           
+  1641                           ;FMX-DBV.c: 28: eeprom_write(0x01, Rxdata[4]);
+  1642  0295  1683               	bsf	3,5	;RP0=1, select bank1
+  1643  0296  0824               	movf	(_Rxdata^(0+128)+4),w	;volatile
+  1644  0297  1283               	bcf	3,5	;RP0=0, select bank0
+  1645  0298  00D2               	movwf	?_eeprom_write
+  1646  0299  3001               	movlw	1
+  1647  029A  259D               	fcall	_eeprom_write
+  1648                           
+  1649                           ;FMX-DBV.c: 29: eeprom_write(0x02, Rxdata[5]);
+  1650  029B  0825               	movf	(_Rxdata^(0+128)+5),w	;volatile
+  1651  029C  1283               	bcf	3,5	;RP0=0, select bank0
+  1652  029D  00D2               	movwf	?_eeprom_write
+  1653  029E  3002               	movlw	2
+  1654  029F  259D               	fcall	_eeprom_write
+  1655                           
+  1656                           ;FMX-DBV.c: 30: VehV_tiSig = (Rxdata[4] << 8) + Rxdata[5];
+  1657  02A0  0824               	movf	(_Rxdata^(0+128)+4),w	;volatile
+  1658  02A1  1283               	bcf	3,5	;RP0=0, select bank0
+  1659  02A2  00DE               	movwf	_VehV_tiSig+1
+  1660  02A3  1683               	bsf	3,5	;RP0=1, select bank1
+  1661  02A4  0825               	movf	(_Rxdata^(0+128)+5),w	;volatile
+  1662  02A5  1283               	bcf	3,5	;RP0=0, select bank0
+  1663  02A6  00DD               	movwf	_VehV_tiSig
+  1664                           
+  1665                           ;FMX-DBV.c: 31: eeprom_write(0x03, Rxdata[6]);
+  1666  02A7  1683               	bsf	3,5	;RP0=1, select bank1
+  1667  02A8  0826               	movf	(_Rxdata^(0+128)+6),w	;volatile
+  1668  02A9  1283               	bcf	3,5	;RP0=0, select bank0
+  1669  02AA  00D2               	movwf	?_eeprom_write
+  1670  02AB  3003               	movlw	3
+  1671  02AC  259D               	fcall	_eeprom_write
+  1672                           
+  1673                           ;FMX-DBV.c: 32: VehV_vRef = Rxdata[6];
+  1674  02AD  0826               	movf	(_Rxdata^(0+128)+6),w	;volatile
+  1675  02AE  1283               	bcf	3,5	;RP0=0, select bank0
+  1676  02AF  00DF               	movwf	_VehV_vRef
+  1677                           
+  1678                           ;FMX-DBV.c: 33: eeprom_write(0x04, Rxdata[7]);
+  1679  02B0  1683               	bsf	3,5	;RP0=1, select bank1
+  1680  02B1  0827               	movf	(_Rxdata^(0+128)+7),w	;volatile
+  1681  02B2  1283               	bcf	3,5	;RP0=0, select bank0
+  1682  02B3  00D2               	movwf	?_eeprom_write
+  1683  02B4  3004               	movlw	4
+  1684  02B5  259D               	fcall	_eeprom_write
+  1685                           
+  1686                           ;FMX-DBV.c: 34: VehSpd_numDly = Rxdata[7];
+  1687  02B6  0827               	movf	(_Rxdata^(0+128)+7),w	;volatile
+  1688  02B7  1283               	bcf	3,5	;RP0=0, select bank0
+  1689  02B8  00E0               	movwf	_VehSpd_numDly
+  1690                           
+  1691                           ;FMX-DBV.c: 36: switch(VehSpd_numDly)
+  1692  02B9  2ADF               	goto	l4146
+  1693  02BA                     l4118:	
+  1694                           
+  1695                           ;FMX-DBV.c: 39: {
+  1696                           ;FMX-DBV.c: 40: VehSpd_ctDlyThres = 0;
+  1697  02BA  01BB               	clrf	_VehSpd_ctDlyThres
+  1698  02BB  2AC4               	goto	L21
+  1699  02BC                     l4120:	
+  1700                           ;FMX-DBV.c: 41: }
+  1701                           ;FMX-DBV.c: 42: break;
+  1702                           
+  1703                           
+  1704                           ;FMX-DBV.c: 45: {
+  1705                           ;FMX-DBV.c: 46: VehSpd_ctDlyThres = 20;
+  1706  02BC  3014               	movlw	20
+  1707  02BD  2AC3               	goto	L29
+  1708  02BE                     l4122:	
+  1709                           ;FMX-DBV.c: 47: }
+  1710                           ;FMX-DBV.c: 48: break;
+  1711                           
+  1712                           
+  1713                           ;FMX-DBV.c: 51: {
+  1714                           ;FMX-DBV.c: 52: VehSpd_ctDlyThres = 40;
+  1715  02BE  3028               	movlw	40
+  1716  02BF  2AC3               	goto	L29
+  1717  02C0                     l4124:	
+  1718                           ;FMX-DBV.c: 53: }
+  1719                           ;FMX-DBV.c: 54: break;
+  1720                           
+  1721                           
+  1722                           ;FMX-DBV.c: 57: {
+  1723                           ;FMX-DBV.c: 58: VehSpd_ctDlyThres = 120;
+  1724  02C0  3078               	movlw	120
+  1725  02C1  2AC3               	goto	L29
+  1726  02C2                     l4126:	
+  1727                           ;FMX-DBV.c: 59: }
+  1728                           ;FMX-DBV.c: 60: break;
+  1729                           
+  1730                           
+  1731                           ;FMX-DBV.c: 63: {
+  1732                           ;FMX-DBV.c: 64: VehSpd_ctDlyThres = 240;
+  1733  02C2  30F0               	movlw	240
+  1734  02C3                     L29:	
+  1735  02C3  00BB               	movwf	_VehSpd_ctDlyThres
+  1736  02C4                     L21:	
+  1737  02C4  01BC               	clrf	_VehSpd_ctDlyThres+1
+  1738                           
+  1739                           ;FMX-DBV.c: 65: }
+  1740                           ;FMX-DBV.c: 66: break;
+  1741  02C5  2AEA               	goto	l4148
+  1742  02C6                     l4128:	
+  1743                           
+  1744                           ;FMX-DBV.c: 69: {
+  1745                           ;FMX-DBV.c: 70: VehSpd_ctDlyThres = 360;
+  1746  02C6  3068               	movlw	104
+  1747  02C7  2AC9               	goto	L22
+  1748  02C8                     l4130:	
+  1749                           ;FMX-DBV.c: 71: }
+  1750                           ;FMX-DBV.c: 72: break;
+  1751                           
+  1752                           
+  1753                           ;FMX-DBV.c: 75: {
+  1754                           ;FMX-DBV.c: 76: VehSpd_ctDlyThres = 480;
+  1755  02C8  30E0               	movlw	224
+  1756  02C9                     L22:	
+  1757  02C9  00BB               	movwf	_VehSpd_ctDlyThres
+  1758  02CA  3001               	movlw	1
+  1759  02CB  2ADD               	goto	L28
+  1760  02CC                     l4132:	
+  1761                           ;FMX-DBV.c: 77: }
+  1762                           ;FMX-DBV.c: 78: break;
+  1763                           
+  1764                           
+  1765                           ;FMX-DBV.c: 81: {
+  1766                           ;FMX-DBV.c: 82: VehSpd_ctDlyThres = 600;
+  1767  02CC  3058               	movlw	88
+  1768  02CD  2ACF               	goto	L32
+  1769  02CE                     l4134:	
+  1770                           ;FMX-DBV.c: 83: }
+  1771                           ;FMX-DBV.c: 84: break;
+  1772                           
+  1773                           
+  1774                           ;FMX-DBV.c: 87: {
+  1775                           ;FMX-DBV.c: 88: VehSpd_ctDlyThres = 720;
+  1776  02CE  30D0               	movlw	208
+  1777  02CF                     L32:	
+  1778  02CF  00BB               	movwf	_VehSpd_ctDlyThres
+  1779  02D0  3002               	movlw	2
+  1780  02D1  2ADD               	goto	L28
+  1781  02D2                     l4136:	
+  1782                           ;FMX-DBV.c: 89: }
+  1783                           ;FMX-DBV.c: 90: break;
+  1784                           
+  1785                           
+  1786                           ;FMX-DBV.c: 93: {
+  1787                           ;FMX-DBV.c: 94: VehSpd_ctDlyThres = 840;
+  1788  02D2  3048               	movlw	72
+  1789  02D3  2AD5               	goto	L30
+  1790  02D4                     l4138:	
+  1791                           ;FMX-DBV.c: 95: }
+  1792                           ;FMX-DBV.c: 96: break;
+  1793                           
+  1794                           
+  1795                           ;FMX-DBV.c: 99: {
+  1796                           ;FMX-DBV.c: 100: VehSpd_ctDlyThres = 960;
+  1797  02D4  30C0               	movlw	192
+  1798  02D5                     L30:	
+  1799  02D5  00BB               	movwf	_VehSpd_ctDlyThres
+  1800  02D6  3003               	movlw	3
+  1801  02D7  2ADD               	goto	L28
+  1802  02D8                     l4140:	
+  1803                           ;FMX-DBV.c: 101: }
+  1804                           ;FMX-DBV.c: 102: break;
+  1805                           
+  1806                           
+  1807                           ;FMX-DBV.c: 105: {
+  1808                           ;FMX-DBV.c: 106: VehSpd_ctDlyThres = 1080;
+  1809  02D8  3038               	movlw	56
+  1810  02D9  2ADB               	goto	L31
+  1811  02DA                     l4142:	
+  1812                           ;FMX-DBV.c: 107: }
+  1813                           ;FMX-DBV.c: 108: break;
+  1814                           
+  1815                           
+  1816                           ;FMX-DBV.c: 111: {
+  1817                           ;FMX-DBV.c: 112: VehSpd_ctDlyThres = 1200;
+  1818  02DA  30B0               	movlw	176
+  1819  02DB                     L31:	
+  1820  02DB  00BB               	movwf	_VehSpd_ctDlyThres
+  1821  02DC  3004               	movlw	4
+  1822  02DD                     L28:	
+  1823  02DD  00BC               	movwf	_VehSpd_ctDlyThres+1
+  1824                           
+  1825                           ;FMX-DBV.c: 113: }
+  1826                           ;FMX-DBV.c: 114: break;
+  1827  02DE  2AEA               	goto	l4148
+  1828  02DF                     l4146:	
+  1829  02DF  0860               	movf	_VehSpd_numDly,w
+  1830                           
+  1831                           ; Switch size 1, requested type "space"
+  1832                           ; Number of cases is 12, Range of values is 0 to 11
+  1833                           ; switch strategies available:
+  1834                           ; Name         Instructions Cycles
+  1835                           ; direct_byte           18     6 (fixed)
+  1836                           ; simple_byte           37    19 (average)
+  1837                           ; jumptable            260     6 (fixed)
+  1838                           ; rangetable            16     6 (fixed)
+  1839                           ; spacedrange           30     9 (fixed)
+  1840                           ; locatedrange          12     3 (fixed)
+  1841                           ;	Chosen strategy is direct_byte
+  1842  02E0  0084               	movwf	4
+  1843  02E1  300C               	movlw	12
+  1844  02E2  0204               	subwf	4,w
+  1845  02E3  1803               	skipnc
+  1846  02E4  2ADA               	goto	l4142
+  1847  02E5  3000               	movlw	high S4418
+  1848  02E6  008A               	movwf	10
+  1849  02E7  301D               	movlw	low S4418
+  1850  02E8  0704               	addwf	4,w
+  1851  02E9  0082               	movwf	2
+  1852  02EA                     l4148:	
+  1853                           
+  1854                           ;FMX-DBV.c: 117: currAddr = 0x05;
+  1855  02EA  3005               	movlw	5
+  1856  02EB  00D8               	movwf	Task_1_100ms@currAddr
+  1857                           
+  1858                           ;FMX-DBV.c: 118: for(i = 8; i < 16 ; i++)
+  1859  02EC  3008               	movlw	8
+  1860  02ED  00D7               	movwf	Task_1_100ms@i
+  1861  02EE                     l4152:	
+  1862                           
+  1863                           ;FMX-DBV.c: 119: {
+  1864                           ;FMX-DBV.c: 120: eeprom_write(currAddr, Rxdata[i]);
+  1865  02EE  0857               	movf	Task_1_100ms@i,w
+  1866  02EF  3EA0               	addlw	_Rxdata& (0+255)
+  1867  02F0  0084               	movwf	4
+  1868  02F1  0800               	movf	0,w
+  1869  02F2  00D2               	movwf	?_eeprom_write
+  1870  02F3  0858               	movf	Task_1_100ms@currAddr,w
+  1871  02F4  259D               	fcall	_eeprom_write
+  1872  02F5  3010               	movlw	16
+  1873                           
+  1874                           ;FMX-DBV.c: 121: currAddr++;
+  1875  02F6  1283               	bcf	3,5	;RP0=0, select bank0
+  1876  02F7  0AD8               	incf	Task_1_100ms@currAddr,f
+  1877  02F8  0AD7               	incf	Task_1_100ms@i,f
+  1878  02F9  0257               	subwf	Task_1_100ms@i,w
+  1879  02FA  1C03               	skipc
+  1880  02FB  2AEE               	goto	l4152
+  1881                           
+  1882                           ;FMX-DBV.c: 122: }
+  1883                           ;FMX-DBV.c: 123: transmitByte(0xA8);
+  1884  02FC  30A8               	movlw	168
+  1885  02FD  25ED               	fcall	_transmitByte
+  1886                           
+  1887                           ;FMX-DBV.c: 124: transmitByte(0x02);
+  1888  02FE  3002               	movlw	2
+  1889  02FF  25ED               	fcall	_transmitByte
+  1890                           
+  1891                           ;FMX-DBV.c: 125: transmitByte(0x56);
+  1892  0300  3056               	movlw	86
+  1893  0301  25ED               	fcall	_transmitByte
+  1894                           
+  1895                           ;FMX-DBV.c: 126: transmitByte(0x00);
+  1896  0302  3000               	movlw	0
+  1897  0303  25ED               	fcall	_transmitByte
+  1898                           
+  1899                           ;FMX-DBV.c: 127: }
+  1900  0304  2B80               	goto	l4194
+  1901  0305                     l4162:	
+  1902                           
+  1903                           ;FMX-DBV.c: 128: else
+  1904                           ;FMX-DBV.c: 129: {
+  1905                           ;FMX-DBV.c: 130: transmitByte(0xA8);
+  1906  0305  30A8               	movlw	168
+  1907  0306  25ED               	fcall	_transmitByte
+  1908                           
+  1909                           ;FMX-DBV.c: 131: transmitByte(0x03);
+  1910  0307  3003               	movlw	3
+  1911  0308  25ED               	fcall	_transmitByte
+  1912                           
+  1913                           ;FMX-DBV.c: 132: transmitByte(0x7F);
+  1914  0309  307F               	movlw	127
+  1915  030A  25ED               	fcall	_transmitByte
+  1916                           
+  1917                           ;FMX-DBV.c: 133: transmitByte(0x13);
+  1918  030B  3013               	movlw	19
+  1919  030C  25ED               	fcall	_transmitByte
+  1920                           
+  1921                           ;FMX-DBV.c: 134: transmitByte(0x3D);
+  1922  030D  303D               	movlw	61
+  1923  030E  25ED               	fcall	_transmitByte
+  1924  030F  2B80               	goto	l4194
+  1925  0310                     l4164:	
+  1926                           
+  1927                           ;FMX-DBV.c: 140: {
+  1928                           ;FMX-DBV.c: 142: transmitByte(0xA8);
+  1929  0310  30A8               	movlw	168
+  1930  0311  25ED               	fcall	_transmitByte
+  1931                           
+  1932                           ;FMX-DBV.c: 143: transmitByte(0x0F);
+  1933  0312  300F               	movlw	15
+  1934  0313  25ED               	fcall	_transmitByte
+  1935                           
+  1936                           ;FMX-DBV.c: 144: transmitByte(0x62);
+  1937  0314  3062               	movlw	98
+  1938  0315  25ED               	fcall	_transmitByte
+  1939                           
+  1940                           ;FMX-DBV.c: 145: transmitByte(VehV_vLim);
+  1941  0316  0861               	movf	_VehV_vLim,w
+  1942  0317  25ED               	fcall	_transmitByte
+  1943                           
+  1944                           ;FMX-DBV.c: 146: transmitByte(VehV_tiSig >> 8);
+  1945  0318  085E               	movf	_VehV_tiSig+1,w
+  1946  0319  25ED               	fcall	_transmitByte
+  1947                           
+  1948                           ;FMX-DBV.c: 147: transmitByte(VehV_tiSig);
+  1949  031A  085D               	movf	_VehV_tiSig,w
+  1950  031B  25ED               	fcall	_transmitByte
+  1951                           
+  1952                           ;FMX-DBV.c: 148: transmitByte(VehV_vRef);
+  1953  031C  085F               	movf	_VehV_vRef,w
+  1954  031D  25ED               	fcall	_transmitByte
+  1955                           
+  1956                           ;FMX-DBV.c: 149: transmitByte(VehSpd_numDly);
+  1957  031E  0860               	movf	_VehSpd_numDly,w
+  1958  031F  25ED               	fcall	_transmitByte
+  1959  0320  3005               	movlw	5
+  1960                           
+  1961                           ;FMX-DBV.c: 151: chksum = 0;
+  1962  0321  01D4               	clrf	Task_1_100ms@chksum
+  1963  0322  01D5               	clrf	Task_1_100ms@chksum+1
+  1964                           
+  1965                           ;FMX-DBV.c: 152: for (currAddr = 0x05; currAddr <= 0x0C; currAddr++)
+  1966  0323  00D8               	movwf	Task_1_100ms@currAddr
+  1967  0324                     l4174:	
+  1968                           
+  1969                           ;FMX-DBV.c: 153: {
+  1970                           ;FMX-DBV.c: 154: data = eeprom_read(currAddr);
+  1971  0324  0858               	movf	Task_1_100ms@currAddr,w
+  1972  0325  25B9               	fcall	_eeprom_read
+  1973  0326  1283               	bcf	3,5	;RP0=0, select bank0
+  1974  0327  00D6               	movwf	Task_1_100ms@data
+  1975                           
+  1976                           ;FMX-DBV.c: 155: chksum = chksum + data;
+  1977  0328  07D4               	addwf	Task_1_100ms@chksum,f
+  1978  0329  1803               	skipnc
+  1979  032A  0AD5               	incf	Task_1_100ms@chksum+1,f
+  1980                           
+  1981                           ;FMX-DBV.c: 156: transmitByte(data);
+  1982  032B  0856               	movf	Task_1_100ms@data,w
+  1983  032C  25ED               	fcall	_transmitByte
+  1984  032D  300D               	movlw	13
+  1985  032E  0AD8               	incf	Task_1_100ms@currAddr,f
+  1986  032F  0258               	subwf	Task_1_100ms@currAddr,w
+  1987  0330  1C03               	skipc
+  1988  0331  2B24               	goto	l4174
+  1989                           
+  1990                           ;FMX-DBV.c: 157: }
+  1991                           ;FMX-DBV.c: 158: chksum = 0xA8 + 0x62 + 0x0F + VehV_vLim +(unsigned char)(VehV_tiSig >> 
+      +                          8) +(unsigned char)(VehV_tiSig) + VehV_vRef + VehSpd_numDly + chksum;
+  1992  0332  085E               	movf	_VehV_tiSig+1,w
+  1993  0333  1683               	bsf	3,5	;RP0=1, select bank1
+  1994  0334  00BA               	movwf	(??_Task_1_100ms^(0+128)+1)
+  1995  0335  1283               	bcf	3,5	;RP0=0, select bank0
+  1996  0336  085D               	movf	_VehV_tiSig,w
+  1997  0337  1683               	bsf	3,5	;RP0=1, select bank1
+  1998  0338  00B9               	movwf	??_Task_1_100ms^(0+128)
+  1999  0339  083A               	movf	(??_Task_1_100ms^(0+128)+1),w
+  2000  033A  00B9               	movwf	??_Task_1_100ms^(0+128)
+  2001  033B  01BA               	clrf	(??_Task_1_100ms^(0+128)+1)
+  2002  033C  1283               	bcf	3,5	;RP0=0, select bank0
+  2003  033D  0861               	movf	_VehV_vLim,w
+  2004  033E  1683               	bsf	3,5	;RP0=1, select bank1
+  2005  033F  0739               	addwf	??_Task_1_100ms^(0+128),w
+  2006  0340  00BB               	movwf	(??_Task_1_100ms+2)^(0+128)
+  2007  0341  01BC               	clrf	((??_Task_1_100ms+2)^(0+128)+1)
+  2008  0342  0DBC               	rlf	(??_Task_1_100ms+3)^(0+128),f
+  2009  0343  1283               	bcf	3,5	;RP0=0, select bank0
+  2010  0344  085D               	movf	_VehV_tiSig,w
+  2011  0345  1683               	bsf	3,5	;RP0=1, select bank1
+  2012  0346  073B               	addwf	(??_Task_1_100ms+2)^(0+128),w
+  2013  0347  00BD               	movwf	(??_Task_1_100ms+4)^(0+128)
+  2014  0348  3000               	movlw	0
+  2015  0349  1803               	skipnc
+  2016  034A  3001               	movlw	1
+  2017  034B  073C               	addwf	(??_Task_1_100ms+3)^(0+128),w
+  2018  034C  00BE               	movwf	(??_Task_1_100ms+5)^(0+128)
+  2019  034D  1283               	bcf	3,5	;RP0=0, select bank0
+  2020  034E  085F               	movf	_VehV_vRef,w
+  2021  034F  1683               	bsf	3,5	;RP0=1, select bank1
+  2022  0350  073D               	addwf	(??_Task_1_100ms+4)^(0+128),w
+  2023  0351  00BF               	movwf	(??_Task_1_100ms+6)^(0+128)
+  2024  0352  3000               	movlw	0
+  2025  0353  1803               	skipnc
+  2026  0354  3001               	movlw	1
+  2027  0355  073E               	addwf	(??_Task_1_100ms+5)^(0+128),w
+  2028  0356  00C0               	movwf	(??_Task_1_100ms+7)^(0+128)
+  2029  0357  1283               	bcf	3,5	;RP0=0, select bank0
+  2030  0358  0860               	movf	_VehSpd_numDly,w
+  2031  0359  1683               	bsf	3,5	;RP0=1, select bank1
+  2032  035A  073F               	addwf	(??_Task_1_100ms+6)^(0+128),w
+  2033  035B  00C1               	movwf	(??_Task_1_100ms+8)^(0+128)
+  2034  035C  3000               	movlw	0
+  2035  035D  1803               	skipnc
+  2036  035E  3001               	movlw	1
+  2037  035F  0740               	addwf	(??_Task_1_100ms+7)^(0+128),w
+  2038  0360  00C2               	movwf	(??_Task_1_100ms+9)^(0+128)
+  2039  0361  0841               	movf	(??_Task_1_100ms+8)^(0+128),w
+  2040  0362  3E19               	addlw	25
+  2041  0363  00C3               	movwf	(??_Task_1_100ms+10)^(0+128)
+  2042  0364  0842               	movf	(??_Task_1_100ms+9)^(0+128),w
+  2043  0365  1803               	skipnc
+  2044  0366  3E01               	addlw	1
+  2045  0367  3E01               	addlw	1
+  2046  0368  00C4               	movwf	(??_Task_1_100ms+11)^(0+128)
+  2047  0369  0843               	movf	(??_Task_1_100ms+10)^(0+128),w
+  2048  036A  1283               	bcf	3,5	;RP0=0, select bank0
+  2049  036B  07D4               	addwf	Task_1_100ms@chksum,f
+  2050  036C  1803               	skipnc
+  2051  036D  0AD5               	incf	Task_1_100ms@chksum+1,f
+  2052  036E  1683               	bsf	3,5	;RP0=1, select bank1
+  2053  036F  0844               	movf	(??_Task_1_100ms+11)^(0+128),w
+  2054  0370  1283               	bcf	3,5	;RP0=0, select bank0
+  2055  0371  07D5               	addwf	Task_1_100ms@chksum+1,f
+  2056                           
+  2057                           ;FMX-DBV.c: 159: transmitByte((unsigned char)chksum);
+  2058  0372  0854               	movf	Task_1_100ms@chksum,w
+  2059  0373  25ED               	fcall	_transmitByte
+  2060                           
+  2061                           ;FMX-DBV.c: 160: }
+  2062                           ;FMX-DBV.c: 161: break;
+  2063  0374  2B80               	goto	l4194
+  2064  0375                     l4188:	
+  2065                           
+  2066                           ;FMX-DBV.c: 164: {
+  2067                           ;FMX-DBV.c: 165: transmitByte(0x7F);
+  2068  0375  307F               	movlw	127
+  2069  0376  25ED               	fcall	_transmitByte
+  2070                           
+  2071                           ;FMX-DBV.c: 166: }
+  2072                           ;FMX-DBV.c: 167: break;
+  2073  0377  2B80               	goto	l4194
+  2074  0378                     l4192:	
+  2075  0378  0822               	movf	(_Rxdata^(0+128)+2),w	;volatile
+  2076                           
+  2077                           ; Switch size 1, requested type "space"
+  2078                           ; Number of cases is 2, Range of values is 22 to 34
+  2079                           ; switch strategies available:
+  2080                           ; Name         Instructions Cycles
+  2081                           ; simple_byte            7     4 (average)
+  2082                           ; direct_byte           22     9 (fixed)
+  2083                           ; jumptable            263     9 (fixed)
+  2084                           ;	Chosen strategy is simple_byte
+  2085  0379  3A16               	xorlw	22	; case 22
+  2086  037A  1903               	skipnz
+  2087  037B  2A89               	goto	l4102
+  2088  037C  3A34               	xorlw	52	; case 34
+  2089  037D  1903               	skipnz
+  2090  037E  2B10               	goto	l4164
+  2091  037F  2B75               	goto	l4188
+  2092  0380                     l4194:	
+  2093  0380  081A               	movf	26,w	;volatile
+  2094                           
+  2095                           ;FMX-DBV.c: 170: RCIE = 1;
+  2096  0381  1683               	bsf	3,5	;RP0=1, select bank1
+  2097  0382  168C               	bsf	12,5
+  2098                           
+  2099                           ;FMX-DBV.c: 171: Reset_Comm_Timeout();
+  2100  0383  25FE               	fcall	_Reset_Comm_Timeout
+  2101  0384                     l4200:	
+  2102                           
+  2103                           ;FMX-DBV.c: 172: }
+  2104                           ;FMX-DBV.c: 173: EEADR = 0xA0;
+  2105  0384  30A0               	movlw	160
+  2106  0385  1683               	bsf	3,5	;RP0=1, select bank1
+  2107  0386  009B               	movwf	27	;volatile
+  2108  0387  0008               	return
+  2109  0388                     __end_of_Task_1_100ms:	
+  2110                           
+  2111                           	psect	swtext2
+  2112  001D                     __pswtext2:	
+  2113  001D                     S4418:	
+  2114  001D  2ABA               	ljmp	l4118
+  2115  001E  2ABC               	ljmp	l4120
+  2116  001F  2ABE               	ljmp	l4122
+  2117  0020  2AC0               	ljmp	l4124
+  2118  0021  2AC2               	ljmp	l4126
+  2119  0022  2AC6               	ljmp	l4128
+  2120  0023  2AC8               	ljmp	l4130
+  2121  0024  2ACC               	ljmp	l4132
+  2122  0025  2ACE               	ljmp	l4134
+  2123  0026  2AD2               	ljmp	l4136
+  2124  0027  2AD4               	ljmp	l4138
+  2125  0028  2AD8               	ljmp	l4140
+  2126                           
+  2127                           	psect	text435
+  2128  05DF                     __ptext435:	
+  2129 ;; =============== function _Task_1_100ms ends ============
+  2130                           
+  2131                           
+  2132 ;; *************** function ___bmul *****************
+  2133 ;; Defined at:
+  2134 ;;		line 3 in file "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\bmul.c"
+  2135 ;; Parameters:    Size  Location     Type
+  2136 ;;  multiplier      1    wreg     unsigned char 
+  2137 ;;  multiplicand    1   12[BANK0 ] unsigned char 
+  2138 ;; Auto vars:     Size  Location     Type
+  2139 ;;  multiplier      1   14[BANK0 ] unsigned char 
+  2140 ;;  product         1   13[BANK0 ] unsigned char 
+  2141 ;; Return value:  Size  Location     Type
+  2142 ;;                  1    wreg      unsigned char 
+  2143 ;; Registers used:
+  2144 ;;		wreg, status,2, status,0
+  2145 ;; Tracked objects:
+  2146 ;;		On entry : 60/0
+  2147 ;;		On exit  : 60/0
+  2148 ;;		Unchanged: FFF9F/0
+  2149 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2150 ;;      Params:         0       1       0       0
+  2151 ;;      Locals:         0       2       0       0
+  2152 ;;      Temps:          0       0       0       0
+  2153 ;;      Totals:         0       3       0       0
+  2154 ;;Total ram usage:        3 bytes
+  2155 ;; Hardware stack levels used:    1
+  2156 ;; Hardware stack levels required when called:    2
+  2157 ;; This function calls:
+  2158 ;;		Nothing
+  2159 ;; This function is called by:
+  2160 ;;		_Dispatch_Tasks
+  2161 ;;		_Create_Task
+  2162 ;; This function uses a non-reentrant model
+  2163 ;;
+  2164  05DF                     ___bmul:	
+  2165                           
+  2166                           ; Regs used in ___bmul: [wreg+status,2+status,0]
+  2167                           ;___bmul@multiplier stored from wreg
+  2168  05DF  00D4               	movwf	___bmul@multiplier
+  2169  05E0  01D3               	clrf	___bmul@product
+  2170  05E1                     l3700:	
+  2171  05E1  0852               	movf	___bmul@multiplicand,w
+  2172  05E2  1854               	btfsc	___bmul@multiplier,0
+  2173  05E3  07D3               	addwf	___bmul@product,f
+  2174  05E4  1003               	clrc
+  2175  05E5  0DD2               	rlf	___bmul@multiplicand,f
+  2176  05E6  1003               	clrc
+  2177  05E7  0CD4               	rrf	___bmul@multiplier,f
+  2178  05E8  08D4               	movf	___bmul@multiplier,f
+  2179  05E9  1D03               	skipz
+  2180  05EA  2DE1               	goto	l3700
+  2181  05EB  0853               	movf	___bmul@product,w
+  2182  05EC  0008               	return
+  2183  05ED                     __end_of___bmul:	
+  2184                           
+  2185                           	psect	text436
+  2186  05B9                     __ptext436:	
+  2187 ;; =============== function ___bmul ends ============
+  2188                           
+  2189                           
+  2190 ;; *************** function _eeprom_read *****************
+  2191 ;; Defined at:
+  2192 ;;		line 7 in file "eeread.c"
+  2193 ;; Parameters:    Size  Location     Type
+  2194 ;;  addr            1    wreg     unsigned char 
+  2195 ;; Auto vars:     Size  Location     Type
+  2196 ;;  addr            1   12[BANK0 ] unsigned char 
+  2197 ;; Return value:  Size  Location     Type
+  2198 ;;                  1    wreg      unsigned char 
+  2199 ;; Registers used:
+  2200 ;;		wreg, status,2, status,0
+  2201 ;; Tracked objects:
+  2202 ;;		On entry : 60/0
+  2203 ;;		On exit  : 60/20
+  2204 ;;		Unchanged: FFE00/0
+  2205 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2206 ;;      Params:         0       0       0       0
+  2207 ;;      Locals:         0       1       0       0
+  2208 ;;      Temps:          0       0       0       0
+  2209 ;;      Totals:         0       1       0       0
+  2210 ;;Total ram usage:        1 bytes
+  2211 ;; Hardware stack levels used:    1
+  2212 ;; Hardware stack levels required when called:    2
+  2213 ;; This function calls:
+  2214 ;;		Nothing
+  2215 ;; This function is called by:
+  2216 ;;		_Task_1_100ms
+  2217 ;;		_main
+  2218 ;; This function uses a non-reentrant model
+  2219 ;;
+  2220  05B9                     _eeprom_read:	
+  2221                           
+  2222                           ; Regs used in _eeprom_read: [wreg+status,2+status,0]
+  2223                           ;eeprom_read@addr stored from wreg
+  2224  05B9  00D2               	movwf	eeprom_read@addr
+  2225  05BA                     l1679:	
+  2226  05BA  0064               	clrwdt	;#
+  2227  05BB  1683               	bsf	3,5	;RP0=1, select bank1
+  2228  05BC  1303               	bcf	3,6	;RP1=0, select bank1
+  2229  05BD  189C               	btfsc	28,1
+  2230  05BE  2DBA               	goto	l1679
+  2231  05BF  1283               	bcf	3,5	;RP0=0, select bank0
+  2232  05C0  0852               	movf	eeprom_read@addr,w
+  2233  05C1  1683               	bsf	3,5	;RP0=1, select bank1
+  2234  05C2  009B               	movwf	27	;volatile
+  2235  05C3  303F               	movlw	63
+  2236  05C4  059C               	andwf	28,f	;volatile
+  2237  05C5  141C               	bsf	28,0
+  2238  05C6  1003               	clrc
+  2239  05C7  181C               	btfsc	28,0
+  2240  05C8  1403               	setc
+  2241  05C9  1803               	skipnc
+  2242  05CA  3001               	movlw	1
+  2243  05CB  081A               	movf	26,w	;volatile
+  2244  05CC  0008               	return
+  2245  05CD                     __end_of_eeprom_read:	
+  2246                           
+  2247                           	psect	text437
+  2248  05ED                     __ptext437:	
+  2249 ;; =============== function _eeprom_read ends ============
+  2250                           
+  2251                           
+  2252 ;; *************** function _transmitByte *****************
+  2253 ;; Defined at:
+  2254 ;;		line 35 in file "C:\Users\Gamer\Desktop\Tony\Work\03_FleetMax\Projects\FMX_01_RSL-DBV\03_Embedded\03_Firmware\V4\UAR
+      +T_routines.c"
+  2255 ;; Parameters:    Size  Location     Type
+  2256 ;;  data            1    wreg     unsigned char 
+  2257 ;; Auto vars:     Size  Location     Type
+  2258 ;;  data            1   12[BANK0 ] unsigned char 
+  2259 ;; Return value:  Size  Location     Type
+  2260 ;;		None               void
+  2261 ;; Registers used:
+  2262 ;;		wreg
+  2263 ;; Tracked objects:
+  2264 ;;		On entry : 40/0
+  2265 ;;		On exit  : 60/0
+  2266 ;;		Unchanged: FFF9F/0
+  2267 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2268 ;;      Params:         0       0       0       0
+  2269 ;;      Locals:         0       1       0       0
+  2270 ;;      Temps:          0       0       0       0
+  2271 ;;      Totals:         0       1       0       0
+  2272 ;;Total ram usage:        1 bytes
+  2273 ;; Hardware stack levels used:    1
+  2274 ;; Hardware stack levels required when called:    2
+  2275 ;; This function calls:
+  2276 ;;		Nothing
+  2277 ;; This function is called by:
+  2278 ;;		_Task_1_100ms
+  2279 ;; This function uses a non-reentrant model
+  2280 ;;
+  2281  05ED                     _transmitByte:	
+  2282                           
+  2283                           ; Regs used in _transmitByte: [wreg]
+  2284                           ;transmitByte@data stored from wreg
+  2285  05ED  1283               	bcf	3,5	;RP0=0, select bank0
+  2286  05EE  00D2               	movwf	transmitByte@data
+  2287  05EF                     l1319:	
+  2288                           ;UART_routines.c: 36: while(!TRMT);
+  2289                           
+  2290  05EF  1683               	bsf	3,5	;RP0=1, select bank1
+  2291  05F0  1C98               	btfss	24,1
+  2292  05F1  2DEF               	goto	l1319
+  2293                           
+  2294                           ;UART_routines.c: 37: TXREG = data;
+  2295  05F2  1283               	bcf	3,5	;RP0=0, select bank0
+  2296  05F3  0852               	movf	transmitByte@data,w
+  2297  05F4  0099               	movwf	25	;volatile
+  2298  05F5  0008               	return
+  2299  05F6                     __end_of_transmitByte:	
+  2300                           
+  2301                           	psect	text438
+  2302  059D                     __ptext438:	
+  2303 ;; =============== function _transmitByte ends ============
+  2304                           
+  2305                           
+  2306 ;; *************** function _eeprom_write *****************
+  2307 ;; Defined at:
+  2308 ;;		line 7 in file "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\eewrite.c"
+  2309 ;; Parameters:    Size  Location     Type
+  2310 ;;  addr            1    wreg     unsigned char 
+  2311 ;;  value           1   12[BANK0 ] unsigned char 
+  2312 ;; Auto vars:     Size  Location     Type
+  2313 ;;  addr            1   13[BANK0 ] unsigned char 
+  2314 ;; Return value:  Size  Location     Type
+  2315 ;;                  1    wreg      unsigned char 
+  2316 ;; Registers used:
+  2317 ;;		wreg, status,2, status,0
+  2318 ;; Tracked objects:
+  2319 ;;		On entry : 160/0
+  2320 ;;		On exit  : 160/20
+  2321 ;;		Unchanged: FFE9F/0
+  2322 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2323 ;;      Params:         0       1       0       0
+  2324 ;;      Locals:         0       1       0       0
+  2325 ;;      Temps:          0       0       0       0
+  2326 ;;      Totals:         0       2       0       0
+  2327 ;;Total ram usage:        2 bytes
+  2328 ;; Hardware stack levels used:    1
+  2329 ;; Hardware stack levels required when called:    2
+  2330 ;; This function calls:
+  2331 ;;		Nothing
+  2332 ;; This function is called by:
+  2333 ;;		_Task_1_100ms
+  2334 ;; This function uses a non-reentrant model
+  2335 ;;
+  2336  059D                     _eeprom_write:	
+  2337                           
+  2338                           ; Regs used in _eeprom_write: [wreg+status,2+status,0]
+  2339                           ;eeprom_write@addr stored from wreg
+  2340  059D  00D3               	movwf	eeprom_write@addr
+  2341  059E                     l2021:	
+  2342  059E  1683               	bsf	3,5	;RP0=1, select bank1
+  2343  059F  189C               	btfsc	28,1
+  2344  05A0  2D9E               	goto	l2021
+  2345  05A1  1283               	bcf	3,5	;RP0=0, select bank0
+  2346  05A2  0853               	movf	eeprom_write@addr,w
+  2347  05A3  1683               	bsf	3,5	;RP0=1, select bank1
+  2348  05A4  009B               	movwf	27	;volatile
+  2349  05A5  1283               	bcf	3,5	;RP0=0, select bank0
+  2350  05A6  0852               	movf	eeprom_write@value,w
+  2351  05A7  1683               	bsf	3,5	;RP0=1, select bank1
+  2352  05A8  009A               	movwf	26	;volatile
+  2353  05A9  303F               	movlw	63
+  2354  05AA  059C               	andwf	28,f	;volatile
+  2355  05AB  1003               	bcf	3,0
+  2356  05AC  1B8B               	btfsc	11,7
+  2357  05AD  1403               	bsf	3,0
+  2358  05AE  3055               	movlw	85
+  2359  05AF  138B               	bcf	11,7
+  2360  05B0  151C               	bsf	28,2
+  2361  05B1  009D               	movwf	29	;volatile
+  2362  05B2  30AA               	movlw	170
+  2363  05B3  009D               	movwf	29	;volatile
+  2364  05B4  149C               	bsf	28,1
+  2365  05B5  111C               	bcf	28,2
+  2366  05B6  1803               	btfsc	3,0
+  2367  05B7  178B               	bsf	11,7
+  2368  05B8  0008               	return
+  2369  05B9                     __end_of_eeprom_write:	
+  2370                           
+  2371                           	psect	text439
+  2372  05FE                     __ptext439:	
+  2373 ;; =============== function _eeprom_write ends ============
+  2374                           
+  2375                           
+  2376 ;; *************** function _Reset_Comm_Timeout *****************
+  2377 ;; Defined at:
+  2378 ;;		line 156 in file "C:\Users\Gamer\Desktop\Tony\Work\03_FleetMax\Projects\FMX_01_RSL-DBV\03_Embedded\03_Firmware\V4\In
+      +terrupts.h"
+  2379 ;; Parameters:    Size  Location     Type
+  2380 ;;		None
+  2381 ;; Auto vars:     Size  Location     Type
+  2382 ;;		None
+  2383 ;; Return value:  Size  Location     Type
+  2384 ;;		None               void
+  2385 ;; Registers used:
+  2386 ;;		status,2
+  2387 ;; Tracked objects:
+  2388 ;;		On entry : 60/20
+  2389 ;;		On exit  : 60/0
+  2390 ;;		Unchanged: FFF9F/0
+  2391 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2392 ;;      Params:         0       0       0       0
+  2393 ;;      Locals:         0       0       0       0
+  2394 ;;      Temps:          0       0       0       0
+  2395 ;;      Totals:         0       0       0       0
+  2396 ;;Total ram usage:        0 bytes
+  2397 ;; Hardware stack levels used:    1
+  2398 ;; Hardware stack levels required when called:    2
+  2399 ;; This function calls:
+  2400 ;;		Nothing
+  2401 ;; This function is called by:
+  2402 ;;		_Task_1_100ms
+  2403 ;; This function uses a non-reentrant model
+  2404 ;;
+  2405  05FE                     _Reset_Comm_Timeout:	
+  2406                           
+  2407                           ;Interrupts.h: 157: Rx_complete =0;
+  2408                           
+  2409                           ; Regs used in _Reset_Comm_Timeout: [status,2]
+  2410  05FE  1283               	bcf	3,5	;RP0=0, select bank0
+  2411  05FF  01C4               	clrf	_Rx_complete
+  2412                           
+  2413                           ;Interrupts.h: 158: RxPtr = 0;
+  2414  0600  01C3               	clrf	_RxPtr	;volatile
+  2415                           
+  2416                           ;Interrupts.h: 159: Rx_elapsed_ticks = 0;
+  2417  0601  01B7               	clrf	_Rx_elapsed_ticks
+  2418  0602  01B8               	clrf	_Rx_elapsed_ticks+1
+  2419  0603  0008               	return
+  2420  0604                     __end_of_Reset_Comm_Timeout:	
+  2421                           
+  2422                           	psect	text440
+  2423  0109                     __ptext440:	
+  2424 ;; =============== function _Reset_Comm_Timeout ends ============
+  2425                           
+  2426                           
+  2427 ;; *************** function _my_isr *****************
+  2428 ;; Defined at:
+  2429 ;;		line 24 in file "C:\Users\Gamer\Desktop\Tony\Work\03_FleetMax\Projects\FMX_01_RSL-DBV\03_Embedded\03_Firmware\V4\Int
+      +errupts.h"
+  2430 ;; Parameters:    Size  Location     Type
+  2431 ;;		None
+  2432 ;; Auto vars:     Size  Location     Type
+  2433 ;;  temp            4    8[BANK0 ] unsigned long 
+  2434 ;; Return value:  Size  Location     Type
+  2435 ;;		None               void
+  2436 ;; Registers used:
+  2437 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+  2438 ;; Tracked objects:
+  2439 ;;		On entry : 0/0
+  2440 ;;		On exit  : 60/0
+  2441 ;;		Unchanged: FFE00/0
+  2442 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2443 ;;      Params:         0       0       0       0
+  2444 ;;      Locals:         0       4       0       0
+  2445 ;;      Temps:          0       8       0       0
+  2446 ;;      Totals:         0      12       0       0
+  2447 ;;Total ram usage:       12 bytes
+  2448 ;; Hardware stack levels used:    1
+  2449 ;; Hardware stack levels required when called:    1
+  2450 ;; This function calls:
+  2451 ;;		___lmul
+  2452 ;;		___lldiv
+  2453 ;; This function is called by:
+  2454 ;;		Interrupt level 1
+  2455 ;; This function uses a non-reentrant model
+  2456 ;;
+  2457  0109                     _my_isr:	
+  2458                           
+  2459                           ;Interrupts.h: 25: unsigned long temp;
+  2460                           ;Interrupts.h: 27: if ((TMR2IE)&&(TMR2IF))
+  2461  0109  1683               	bsf	3,5	;RP0=1, select bank1
+  2462  010A  1C8C               	btfss	12,1
+  2463  010B  2920               	goto	i1l3528
+  2464  010C  1283               	bcf	3,5	;RP0=0, select bank0
+  2465  010D  1C8C               	btfss	12,1
+  2466  010E  2920               	goto	i1l3528
+  2467                           
+  2468                           ;Interrupts.h: 28: {
+  2469                           ;Interrupts.h: 29: TMR2IF=0;
+  2470  010F  108C               	bcf	12,1
+  2471                           
+  2472                           ;Interrupts.h: 30: elapsed_ticks++;
+  2473  0110  0ABF               	incf	_elapsed_ticks,f	;volatile
+  2474  0111  1903               	skipnz
+  2475  0112  0AC0               	incf	_elapsed_ticks+1,f	;volatile
+  2476                           
+  2477                           ;Interrupts.h: 32: if(Rx_elapsed_ticks > 100)
+  2478  0113  3000               	movlw	0
+  2479  0114  0238               	subwf	_Rx_elapsed_ticks+1,w
+  2480  0115  3065               	movlw	101
+  2481  0116  1903               	skipnz
+  2482  0117  0237               	subwf	_Rx_elapsed_ticks,w
+  2483  0118  1C03               	skipc
+  2484  0119  291D               	goto	i1l3526
+  2485                           
+  2486                           ;Interrupts.h: 33: {
+  2487                           ;Interrupts.h: 34: RxPtr =0;
+  2488  011A  01C3               	clrf	_RxPtr	;volatile
+  2489                           
+  2490                           ;Interrupts.h: 35: Rx_complete =0;
+  2491  011B  01C4               	clrf	_Rx_complete
+  2492                           
+  2493                           ;Interrupts.h: 36: }
+  2494  011C  2920               	goto	i1l3528
+  2495  011D                     i1l3526:	
+  2496                           
+  2497                           ;Interrupts.h: 37: else
+  2498                           ;Interrupts.h: 38: {
+  2499                           ;Interrupts.h: 39: Rx_elapsed_ticks++;
+  2500  011D  0AB7               	incf	_Rx_elapsed_ticks,f
+  2501  011E  1903               	skipnz
+  2502  011F  0AB8               	incf	_Rx_elapsed_ticks+1,f
+  2503  0120                     i1l3528:	
+  2504                           
+  2505                           ;Interrupts.h: 40: }
+  2506                           ;Interrupts.h: 41: }
+  2507                           ;Interrupts.h: 43: if(TMR1IF && TMR1IE)
+  2508  0120  1283               	bcf	3,5	;RP0=0, select bank0
+  2509  0121  1C0C               	btfss	12,0
+  2510  0122  294F               	goto	i1l3542
+  2511  0123  1683               	bsf	3,5	;RP0=1, select bank1
+  2512  0124  1C0C               	btfss	12,0
+  2513  0125  294F               	goto	i1l3542
+  2514  0126  30FF               	movlw	255
+  2515                           
+  2516                           ;Interrupts.h: 44: {
+  2517                           ;Interrupts.h: 45: TMR1IF = 0;
+  2518  0127  1283               	bcf	3,5	;RP0=0, select bank0
+  2519  0128  100C               	bcf	12,0
+  2520                           
+  2521                           ;Interrupts.h: 47: VehV_tiPulse = VehV_tiPulse + 0xFFFF;
+  2522  0129  07AF               	addwf	_VehV_tiPulse,f	;volatile
+  2523  012A  1C03               	skipc
+  2524  012B  07B0               	addwf	_VehV_tiPulse+1,f	;volatile
+  2525  012C  3000               	movlw	0
+  2526  012D  1803               	skipnc
+  2527  012E  3001               	movlw	1
+  2528  012F  07B1               	addwf	_VehV_tiPulse+2,f	;volatile
+  2529  0130  3000               	movlw	0
+  2530  0131  1803               	skipnc
+  2531  0132  3001               	movlw	1
+  2532  0133  07B2               	addwf	_VehV_tiPulse+3,f	;volatile
+  2533                           
+  2534                           ;Interrupts.h: 49: if(VehV_tiPulse > 0xF4240)
+  2535  0134  3000               	movlw	0
+  2536  0135  0232               	subwf	_VehV_tiPulse+3,w	;volatile
+  2537  0136  1D03               	skipz
+  2538  0137  2942               	goto	u64_25
+  2539  0138  300F               	movlw	15
+  2540  0139  0231               	subwf	_VehV_tiPulse+2,w	;volatile
+  2541  013A  1D03               	skipz
+  2542  013B  2942               	goto	u64_25
+  2543  013C  3042               	movlw	66
+  2544  013D  0230               	subwf	_VehV_tiPulse+1,w	;volatile
+  2545  013E  1D03               	skipz
+  2546  013F  2942               	goto	u64_25
+  2547  0140  3041               	movlw	65
+  2548  0141  022F               	subwf	_VehV_tiPulse,w	;volatile
+  2549  0142                     u64_25:	
+  2550  0142  1C03               	skipc
+  2551  0143  294F               	goto	i1l3542
+  2552                           
+  2553                           ;Interrupts.h: 50: {
+  2554                           ;Interrupts.h: 51: VehV_tiPulseAvg = 0;
+  2555  0144  01B3               	clrf	_VehV_tiPulseAvg	;volatile
+  2556  0145  01B4               	clrf	_VehV_tiPulseAvg+1	;volatile
+  2557  0146  01B5               	clrf	_VehV_tiPulseAvg+2	;volatile
+  2558  0147  01B6               	clrf	_VehV_tiPulseAvg+3	;volatile
+  2559                           
+  2560                           ;Interrupts.h: 52: VehV_tiPulse = 0;
+  2561  0148  01AF               	clrf	_VehV_tiPulse	;volatile
+  2562  0149  01B0               	clrf	_VehV_tiPulse+1	;volatile
+  2563  014A  01B1               	clrf	_VehV_tiPulse+2	;volatile
+  2564  014B  01B2               	clrf	_VehV_tiPulse+3	;volatile
+  2565                           
+  2566                           ;Interrupts.h: 53: VehV_vRaw = 0;
+  2567  014C  01BD               	clrf	_VehV_vRaw	;volatile
+  2568  014D  01BE               	clrf	_VehV_vRaw+1	;volatile
+  2569                           
+  2570                           ;Interrupts.h: 54: TMR1ON = 0;
+  2571  014E  1010               	bcf	16,0
+  2572  014F                     i1l3542:	
+  2573                           
+  2574                           ;Interrupts.h: 55: }
+  2575                           ;Interrupts.h: 56: }
+  2576                           ;Interrupts.h: 58: if((RCIE) && (RCIF))
+  2577  014F  1683               	bsf	3,5	;RP0=1, select bank1
+  2578  0150  1E8C               	btfss	12,5
+  2579  0151  29C2               	goto	i1l438
+  2580  0152  1283               	bcf	3,5	;RP0=0, select bank0
+  2581  0153  1E8C               	btfss	12,5
+  2582  0154  29C2               	goto	i1l438
+  2583                           
+  2584                           ;Interrupts.h: 59: {
+  2585                           ;Interrupts.h: 60: Rx_elapsed_ticks =0;
+  2586  0155  01B7               	clrf	_Rx_elapsed_ticks
+  2587  0156  01B8               	clrf	_Rx_elapsed_ticks+1
+  2588                           
+  2589                           ;Interrupts.h: 61: Rxdata[RxPtr] = RCREG;
+  2590  0157  0843               	movf	_RxPtr,w
+  2591  0158  3EA0               	addlw	_Rxdata& (0+255)
+  2592  0159  0084               	movwf	4
+  2593  015A  081A               	movf	26,w	;volatile
+  2594  015B  1383               	bcf	3,7	;select IRP bank1
+  2595  015C  0080               	movwf	0
+  2596                           
+  2597                           ;Interrupts.h: 62: if(RxPtr==0)
+  2598  015D  08C3               	movf	_RxPtr,f
+  2599  015E  1D03               	skipz
+  2600  015F  2975               	goto	i1l3562
+  2601                           
+  2602                           ;Interrupts.h: 63: {
+  2603                           ;Interrupts.h: 64: Checksum = 0;
+  2604  0160  01C2               	clrf	_Checksum
+  2605                           
+  2606                           ;Interrupts.h: 65: if((Rxdata[RxPtr] == 0xA0)||(Rxdata[RxPtr] == 0x9F))
+  2607  0161  0843               	movf	_RxPtr,w
+  2608  0162  3EA0               	addlw	_Rxdata& (0+255)
+  2609  0163  0084               	movwf	4
+  2610  0164  0800               	movf	0,w
+  2611  0165  3AA0               	xorlw	160
+  2612  0166  1903               	skipnz
+  2613  0167  296F               	goto	i1l3558
+  2614  0168  0843               	movf	_RxPtr,w
+  2615  0169  3EA0               	addlw	_Rxdata& (0+255)
+  2616  016A  0084               	movwf	4
+  2617  016B  0800               	movf	0,w
+  2618  016C  3A9F               	xorlw	159
+  2619  016D  1D03               	skipz
+  2620  016E  29C1               	goto	i1l443
+  2621  016F                     i1l3558:	
+  2622                           
+  2623                           ;Interrupts.h: 66: {
+  2624                           ;Interrupts.h: 67: RxPtr++;
+  2625  016F  0AC3               	incf	_RxPtr,f	;volatile
+  2626                           
+  2627                           ;Interrupts.h: 68: Checksum = Rxdata[0];
+  2628  0170  1683               	bsf	3,5	;RP0=1, select bank1
+  2629  0171  0820               	movf	_Rxdata^(0+128),w	;volatile
+  2630  0172  1283               	bcf	3,5	;RP0=0, select bank0
+  2631  0173  00C2               	movwf	_Checksum
+  2632  0174  29C1               	goto	i1l443
+  2633  0175                     i1l3562:	
+  2634                           
+  2635                           ;Interrupts.h: 71: else if(RxPtr == 1)
+  2636  0175  0B43               	decfsz	_RxPtr,w	;volatile
+  2637  0176  2984               	goto	i1l3572
+  2638                           
+  2639                           ;Interrupts.h: 72: {
+  2640                           ;Interrupts.h: 73: if((Rxdata[RxPtr] <= 0x40))
+  2641  0177  0843               	movf	_RxPtr,w
+  2642  0178  3EA0               	addlw	_Rxdata& (0+255)
+  2643  0179  0084               	movwf	4
+  2644  017A  3041               	movlw	65
+  2645  017B  0200               	subwf	0,w
+  2646  017C  1803               	skipnc
+  2647  017D  2982               	goto	i1l3570
+  2648                           
+  2649                           ;Interrupts.h: 74: {
+  2650                           ;Interrupts.h: 75: RxPtr++;
+  2651  017E  0AC3               	incf	_RxPtr,f	;volatile
+  2652                           
+  2653                           ;Interrupts.h: 76: Checksum += Rxdata[1];
+  2654  017F  1683               	bsf	3,5	;RP0=1, select bank1
+  2655  0180  0821               	movf	(_Rxdata^(0+128)+1),w	;volatile
+  2656  0181  2992               	goto	L33
+  2657  0182                     i1l3570:	
+  2658                           ;Interrupts.h: 77: }
+  2659                           
+  2660                           
+  2661                           ;Interrupts.h: 78: else
+  2662                           ;Interrupts.h: 79: RxPtr=0;
+  2663  0182  01C3               	clrf	_RxPtr	;volatile
+  2664  0183  29C1               	goto	i1l443
+  2665  0184                     i1l3572:	
+  2666                           
+  2667                           ;Interrupts.h: 81: else if(RxPtr == 2)
+  2668  0184  0843               	movf	_RxPtr,w	;volatile
+  2669  0185  3A02               	xorlw	2
+  2670  0186  1D03               	skipz
+  2671  0187  2995               	goto	i1l3582
+  2672                           
+  2673                           ;Interrupts.h: 82: {
+  2674                           ;Interrupts.h: 83: if(Rxdata[RxPtr] <= 0x30)
+  2675  0188  0843               	movf	_RxPtr,w
+  2676  0189  3EA0               	addlw	_Rxdata& (0+255)
+  2677  018A  0084               	movwf	4
+  2678  018B  3031               	movlw	49
+  2679  018C  0200               	subwf	0,w
+  2680  018D  1803               	skipnc
+  2681  018E  2982               	goto	i1l3570
+  2682                           
+  2683                           ;Interrupts.h: 84: {
+  2684                           ;Interrupts.h: 85: RxPtr++;
+  2685  018F  0AC3               	incf	_RxPtr,f	;volatile
+  2686                           
+  2687                           ;Interrupts.h: 86: Checksum += Rxdata[2];
+  2688  0190  1683               	bsf	3,5	;RP0=1, select bank1
+  2689  0191  0822               	movf	(_Rxdata^(0+128)+2),w	;volatile
+  2690  0192                     L33:	
+  2691  0192  1283               	bcf	3,5	;RP0=0, select bank0
+  2692  0193  07C2               	addwf	_Checksum,f
+  2693                           
+  2694                           ;Interrupts.h: 87: }
+  2695  0194  29C1               	goto	i1l443
+  2696  0195                     i1l3582:	
+  2697                           
+  2698                           ;Interrupts.h: 91: else if((RxPtr > 2) && (RxPtr<(Rxdata[1]+1)))
+  2699  0195  3003               	movlw	3
+  2700  0196  0243               	subwf	_RxPtr,w	;volatile
+  2701  0197  1683               	bsf	3,5	;RP0=1, select bank1
+  2702  0198  1C03               	skipc
+  2703  0199  29AF               	goto	L35
+  2704  019A  0821               	movf	(_Rxdata^(0+128)+1),w	;volatile
+  2705  019B  227B               	fcall	PL2	;call to abstracted procedure
+  2706  019C  3A80               	xorlw	128
+  2707  019D  3C80               	sublw	128
+  2708  019E  1D03               	skipz
+  2709  019F  29A2               	goto	u75_25
+  2710  01A0  0846               	movf	??_my_isr,w
+  2711  01A1  0243               	subwf	_RxPtr,w	;volatile
+  2712  01A2                     u75_25:	
+  2713  01A2  1803               	skipnc
+  2714  01A3  29AE               	goto	i1l3590
+  2715                           
+  2716                           ;Interrupts.h: 92: {
+  2717                           ;Interrupts.h: 93: Checksum += Rxdata[RxPtr];
+  2718  01A4  1283               	bcf	3,5	;RP0=0, select bank0
+  2719  01A5  1303               	bcf	3,6	;RP1=0, select bank0
+  2720  01A6  0843               	movf	_RxPtr,w
+  2721  01A7  3EA0               	addlw	_Rxdata& (0+255)
+  2722  01A8  0084               	movwf	4
+  2723  01A9  1383               	bcf	3,7	;select IRP bank1
+  2724  01AA  0800               	movf	0,w
+  2725  01AB  07C2               	addwf	_Checksum,f
+  2726                           
+  2727                           ;Interrupts.h: 94: RxPtr++;
+  2728  01AC  0AC3               	incf	_RxPtr,f	;volatile
+  2729                           
+  2730                           ;Interrupts.h: 95: }
+  2731  01AD  29C1               	goto	i1l443
+  2732  01AE                     i1l3590:	
+  2733                           
+  2734                           ;Interrupts.h: 96: else if(RxPtr==(Rxdata[1]+1))
+  2735  01AE  1683               	bsf	3,5	;RP0=1, select bank1
+  2736  01AF                     L35:	
+  2737  01AF  1303               	bcf	3,6	;RP1=0, select bank1
+  2738  01B0  0821               	movf	(_Rxdata^(0+128)+1),w	;volatile
+  2739  01B1  227B               	fcall	PL2	;call to abstracted procedure
+  2740  01B2  0843               	movf	_RxPtr,w	;volatile
+  2741  01B3  0646               	xorwf	??_my_isr,w
+  2742  01B4  0447               	iorwf	??_my_isr+1,w
+  2743  01B5  1D03               	skipz
+  2744  01B6  29C1               	goto	i1l443
+  2745                           
+  2746                           ;Interrupts.h: 97: {
+  2747                           ;Interrupts.h: 98: if(Checksum == Rxdata[RxPtr])
+  2748  01B7  0843               	movf	_RxPtr,w
+  2749  01B8  3EA0               	addlw	_Rxdata& (0+255)
+  2750  01B9  0084               	movwf	4
+  2751  01BA  1383               	bcf	3,7	;select IRP bank1
+  2752  01BB  0800               	movf	0,w
+  2753  01BC  0642               	xorwf	_Checksum,w
+  2754  01BD  1D03               	skipz
+  2755  01BE  29C1               	goto	i1l443
+  2756                           
+  2757                           ;Interrupts.h: 99: {
+  2758                           ;Interrupts.h: 100: Rx_complete =1;
+  2759  01BF  01C4               	clrf	_Rx_complete
+  2760  01C0  0AC4               	incf	_Rx_complete,f
+  2761  01C1                     i1l443:	
+  2762                           
+  2763                           ;Interrupts.h: 101: }
+  2764                           ;Interrupts.h: 102: }
+  2765                           ;Interrupts.h: 104: RCIF = 0;
+  2766  01C1  128C               	bcf	12,5
+  2767  01C2                     i1l438:	
+  2768                           
+  2769                           ;Interrupts.h: 105: }
+  2770                           ;Interrupts.h: 107: if(INTF && INTE)
+  2771  01C2  188B               	btfsc	11,1
+  2772  01C3  1E0B               	btfss	11,4
+  2773  01C4  2A6F               	goto	i1l464
+  2774                           
+  2775                           ;Interrupts.h: 108: {
+  2776                           ;Interrupts.h: 110: INTF = 0 ;
+  2777  01C5  108B               	bcf	11,1
+  2778                           
+  2779                           ;Interrupts.h: 111: if(TMR1ON == 0)
+  2780  01C6  1283               	bcf	3,5	;RP0=0, select bank0
+  2781  01C7  1810               	btfsc	16,0
+  2782  01C8  29CB               	goto	i1l457
+  2783                           
+  2784                           ;Interrupts.h: 112: {
+  2785                           ;Interrupts.h: 113: TMR1ON = 1;
+  2786  01C9  1410               	bsf	16,0
+  2787                           
+  2788                           ;Interrupts.h: 114: }
+  2789  01CA  2A68               	goto	i1l458
+  2790  01CB                     i1l457:	
+  2791                           
+  2792                           ;Interrupts.h: 115: else
+  2793                           ;Interrupts.h: 116: {
+  2794                           ;Interrupts.h: 117: TMR1ON = 0;
+  2795  01CB  1010               	bcf	16,0
+  2796                           
+  2797                           ;Interrupts.h: 118: TMR1IF = 0;
+  2798  01CC  100C               	bcf	12,0
+  2799                           
+  2800                           ;Interrupts.h: 120: temp = (0xFF00&(TMR1H << 8))+ TMR1L;
+  2801  01CD  080F               	movf	15,w	;volatile
+  2802  01CE  00C6               	movwf	??_my_isr
+  2803  01CF  01C7               	clrf	??_my_isr+1
+  2804  01D0  00C7               	movwf	??_my_isr+1
+  2805  01D1  01C6               	clrf	??_my_isr
+  2806  01D2  01C8               	clrf	??_my_isr+2
+  2807  01D3  00C9               	movwf	??_my_isr+3
+  2808  01D4  080E               	movf	14,w	;volatile
+  2809  01D5  0748               	addwf	??_my_isr+2,w
+  2810  01D6  00CE               	movwf	my_isr@temp
+  2811  01D7  3000               	movlw	0
+  2812  01D8  1803               	skipnc
+  2813  01D9  3001               	movlw	1
+  2814  01DA  0749               	addwf	??_my_isr+3,w
+  2815  01DB  00CF               	movwf	my_isr@temp+1
+  2816  01DC  01D0               	clrf	my_isr@temp+2
+  2817  01DD  01D1               	clrf	my_isr@temp+3
+  2818                           
+  2819                           ;Interrupts.h: 122: TMR1L = 0x00;
+  2820  01DE  018E               	clrf	14	;volatile
+  2821                           
+  2822                           ;Interrupts.h: 123: TMR1H = 0x00;
+  2823  01DF  018F               	clrf	15	;volatile
+  2824                           
+  2825                           ;Interrupts.h: 124: TMR1ON = 1;
+  2826  01E0  1410               	bsf	16,0
+  2827                           
+  2828                           ;Interrupts.h: 126: VehV_tiPulse = VehV_tiPulse + temp;
+  2829  01E1  084E               	movf	my_isr@temp,w
+  2830  01E2  07AF               	addwf	_VehV_tiPulse,f	;volatile
+  2831  01E3  084F               	movf	my_isr@temp+1,w
+  2832  01E4  1103               	clrz
+  2833  01E5  1803               	skipnc
+  2834  01E6  3E01               	addlw	1
+  2835  01E7  1D03               	btfss	3,2
+  2836  01E8  07B0               	addwf	_VehV_tiPulse+1,f	;volatile
+  2837  01E9  0850               	movf	my_isr@temp+2,w
+  2838  01EA  1103               	clrz
+  2839  01EB  1803               	skipnc
+  2840  01EC  3E01               	addlw	1
+  2841  01ED  1D03               	btfss	3,2
+  2842  01EE  07B1               	addwf	_VehV_tiPulse+2,f	;volatile
+  2843  01EF  0851               	movf	my_isr@temp+3,w
+  2844  01F0  1103               	clrz
+  2845  01F1  1803               	skipnc
+  2846  01F2  3E01               	addlw	1
+  2847  01F3  1D03               	btfss	3,2
+  2848  01F4  07B2               	addwf	_VehV_tiPulse+3,f	;volatile
+  2849                           
+  2850                           ;Interrupts.h: 128: if(VehV_tiPulse > 25)
+  2851  01F5  3000               	movlw	0
+  2852  01F6  0232               	subwf	_VehV_tiPulse+3,w	;volatile
+  2853  01F7  1D03               	skipz
+  2854  01F8  2A03               	goto	u82_25
+  2855  01F9  3000               	movlw	0
+  2856  01FA  0231               	subwf	_VehV_tiPulse+2,w	;volatile
+  2857  01FB  1D03               	skipz
+  2858  01FC  2A03               	goto	u82_25
+  2859  01FD  3000               	movlw	0
+  2860  01FE  0230               	subwf	_VehV_tiPulse+1,w	;volatile
+  2861  01FF  1D03               	skipz
+  2862  0200  2A03               	goto	u82_25
+  2863  0201  301A               	movlw	26
+  2864  0202  022F               	subwf	_VehV_tiPulse,w	;volatile
+  2865  0203                     u82_25:	
+  2866  0203  1C03               	skipc
+  2867  0204  2A68               	goto	i1l458
+  2868                           
+  2869                           ;Interrupts.h: 129: {
+  2870                           ;Interrupts.h: 130: if(VehV_tiPulseAvg != 0)
+  2871  0205  0836               	movf	_VehV_tiPulseAvg+3,w	;volatile
+  2872  0206  0435               	iorwf	_VehV_tiPulseAvg+2,w	;volatile
+  2873  0207  0434               	iorwf	_VehV_tiPulseAvg+1,w	;volatile
+  2874  0208  0433               	iorwf	_VehV_tiPulseAvg,w	;volatile
+  2875  0209  1903               	skipnz
+  2876  020A  2A33               	goto	i1l3618
+  2877                           
+  2878                           ;Interrupts.h: 131: {
+  2879                           ;Interrupts.h: 132: VehV_tiPulseAvg = (VehV_tiPulseAvg + VehV_tiPulse)/2;
+  2880  020B  0833               	movf	_VehV_tiPulseAvg,w	;volatile
+  2881  020C  072F               	addwf	_VehV_tiPulse,w	;volatile
+  2882  020D  00C6               	movwf	??_my_isr
+  2883  020E  3000               	movlw	0
+  2884  020F  1803               	skipnc
+  2885  0210  3001               	movlw	1
+  2886  0211  0734               	addwf	_VehV_tiPulseAvg+1,w	;volatile
+  2887  0212  01C8               	clrf	??_my_isr+2
+  2888  0213  1803               	skipnc
+  2889  0214  0AC8               	incf	??_my_isr+2,f
+  2890  0215  0730               	addwf	_VehV_tiPulse+1,w	;volatile
+  2891  0216  00C7               	movwf	??_my_isr+1
+  2892  0217  1803               	skipnc
+  2893  0218  0AC8               	incf	??_my_isr+2,f
+  2894  0219  0835               	movf	_VehV_tiPulseAvg+2,w	;volatile
+  2895  021A  0748               	addwf	??_my_isr+2,w
+  2896  021B  01C9               	clrf	??_my_isr+3
+  2897  021C  1803               	skipnc
+  2898  021D  0AC9               	incf	??_my_isr+3,f
+  2899  021E  0731               	addwf	_VehV_tiPulse+2,w	;volatile
+  2900  021F  00C8               	movwf	??_my_isr+2
+  2901  0220  1803               	skipnc
+  2902  0221  0AC9               	incf	??_my_isr+3,f
+  2903  0222  0836               	movf	_VehV_tiPulseAvg+3,w	;volatile
+  2904  0223  0749               	addwf	??_my_isr+3,w
+  2905  0224  0732               	addwf	_VehV_tiPulse+3,w	;volatile
+  2906  0225  00C9               	movwf	??_my_isr+3
+  2907  0226  1003               	clrc
+  2908  0227  0CC9               	rrf	??_my_isr+3,f
+  2909  0228  0CC8               	rrf	??_my_isr+2,f
+  2910  0229  0CC7               	rrf	??_my_isr+1,f
+  2911  022A  0CC6               	rrf	??_my_isr,f
+  2912  022B  0849               	movf	??_my_isr+3,w
+  2913  022C  00B6               	movwf	_VehV_tiPulseAvg+3	;volatile
+  2914  022D  0848               	movf	??_my_isr+2,w
+  2915  022E  00B5               	movwf	_VehV_tiPulseAvg+2	;volatile
+  2916  022F  0847               	movf	??_my_isr+1,w
+  2917  0230  00B4               	movwf	_VehV_tiPulseAvg+1	;volatile
+  2918  0231  0846               	movf	??_my_isr,w
+  2919  0232  2A3A               	goto	L34
+  2920  0233                     i1l3618:	
+  2921                           ;Interrupts.h: 133: }
+  2922                           
+  2923                           
+  2924                           ;Interrupts.h: 134: else
+  2925                           ;Interrupts.h: 135: {
+  2926                           ;Interrupts.h: 136: VehV_tiPulseAvg = VehV_tiPulse;
+  2927  0233  0832               	movf	_VehV_tiPulse+3,w	;volatile
+  2928  0234  00B6               	movwf	_VehV_tiPulseAvg+3	;volatile
+  2929  0235  0831               	movf	_VehV_tiPulse+2,w	;volatile
+  2930  0236  00B5               	movwf	_VehV_tiPulseAvg+2	;volatile
+  2931  0237  0830               	movf	_VehV_tiPulse+1,w	;volatile
+  2932  0238  00B4               	movwf	_VehV_tiPulseAvg+1	;volatile
+  2933  0239  082F               	movf	_VehV_tiPulse,w	;volatile
+  2934  023A                     L34:	
+  2935  023A  00B3               	movwf	_VehV_tiPulseAvg	;volatile
+  2936                           
+  2937                           ;Interrupts.h: 137: }
+  2938                           ;Interrupts.h: 138: temp = ((unsigned long)VehV_tiSig * (unsigned long)VehV_vRef);
+  2939  023B  085D               	movf	_VehV_tiSig,w
+  2940  023C  00F0               	movwf	?___lmul
+  2941  023D  085E               	movf	_VehV_tiSig+1,w
+  2942  023E  00F1               	movwf	?___lmul+1
+  2943  023F  01F2               	clrf	?___lmul+2
+  2944  0240  01F3               	clrf	?___lmul+3
+  2945  0241  085F               	movf	_VehV_vRef,w
+  2946  0242  00F4               	movwf	?___lmul+4
+  2947  0243  01F5               	clrf	?___lmul+5
+  2948  0244  01F6               	clrf	?___lmul+6
+  2949  0245  01F7               	clrf	?___lmul+7
+  2950  0246  251A               	fcall	___lmul
+  2951  0247  0873               	movf	?___lmul+3,w
+  2952  0248  00D1               	movwf	my_isr@temp+3
+  2953  0249  0872               	movf	?___lmul+2,w
+  2954  024A  00D0               	movwf	my_isr@temp+2
+  2955  024B  0871               	movf	?___lmul+1,w
+  2956  024C  00CF               	movwf	my_isr@temp+1
+  2957  024D  0870               	movf	?___lmul,w
+  2958  024E  00CE               	movwf	my_isr@temp
+  2959                           
+  2960                           ;Interrupts.h: 139: VehV_vRaw = (unsigned long)(temp/(VehV_tiPulseAvg));
+  2961  024F  0836               	movf	_VehV_tiPulseAvg+3,w	;volatile
+  2962  0250  00F3               	movwf	?___lldiv+3
+  2963  0251  0835               	movf	_VehV_tiPulseAvg+2,w	;volatile
+  2964  0252  00F2               	movwf	?___lldiv+2
+  2965  0253  0834               	movf	_VehV_tiPulseAvg+1,w	;volatile
+  2966  0254  00F1               	movwf	?___lldiv+1
+  2967  0255  0833               	movf	_VehV_tiPulseAvg,w	;volatile
+  2968  0256  00F0               	movwf	?___lldiv
+  2969  0257  0851               	movf	my_isr@temp+3,w
+  2970  0258  00F7               	movwf	?___lldiv+7
+  2971  0259  0850               	movf	my_isr@temp+2,w
+  2972  025A  00F6               	movwf	?___lldiv+6
+  2973  025B  084F               	movf	my_isr@temp+1,w
+  2974  025C  00F5               	movwf	?___lldiv+5
+  2975  025D  084E               	movf	my_isr@temp,w
+  2976  025E  00F4               	movwf	?___lldiv+4
+  2977  025F  244C               	fcall	___lldiv
+  2978  0260  0871               	movf	?___lldiv+1,w
+  2979  0261  00BE               	movwf	_VehV_vRaw+1	;volatile
+  2980  0262  0870               	movf	?___lldiv,w
+  2981  0263  00BD               	movwf	_VehV_vRaw	;volatile
+  2982                           
+  2983                           ;Interrupts.h: 140: VehV_tiPulse = 0;
+  2984  0264  01AF               	clrf	_VehV_tiPulse	;volatile
+  2985  0265  01B0               	clrf	_VehV_tiPulse+1	;volatile
+  2986  0266  01B1               	clrf	_VehV_tiPulse+2	;volatile
+  2987  0267  01B2               	clrf	_VehV_tiPulse+3	;volatile
+  2988  0268                     i1l458:	
+  2989                           
+  2990                           ;Interrupts.h: 141: }
+  2991                           ;Interrupts.h: 142: }
+  2992                           ;Interrupts.h: 144: if(VehV_stSpdLim)
+  2993  0268  0845               	movf	_VehV_stSpdLim,w
+  2994  0269  1903               	btfsc	3,2
+  2995  026A  2A6D               	goto	i1l3628
+  2996                           
+  2997                           ;Interrupts.h: 145: {
+  2998                           ;Interrupts.h: 146: RA0 = 0;
+  2999  026B  1005               	bcf	5,0
+  3000                           
+  3001                           ;Interrupts.h: 147: }
+  3002  026C  2A6F               	goto	i1l464
+  3003  026D                     i1l3628:	
+  3004                           
+  3005                           ;Interrupts.h: 148: else
+  3006                           ;Interrupts.h: 149: {
+  3007                           ;Interrupts.h: 150: RA0 = ~RA0;
+  3008  026D  3001               	movlw	1
+  3009  026E  0685               	xorwf	5,f
+  3010  026F                     i1l464:	
+  3011  026F  1283               	bcf	3,5	;RP0=0, select bank0
+  3012  0270  084D               	movf	??_my_isr+7,w
+  3013  0271  00FF               	movwf	127
+  3014  0272  084C               	movf	??_my_isr+6,w
+  3015  0273  008A               	movwf	10
+  3016  0274  084B               	movf	??_my_isr+5,w
+  3017  0275  0084               	movwf	4
+  3018  0276  0E4A               	swapf	(??_my_isr+4)^0,w
+  3019  0277  0083               	movwf	3
+  3020  0278  0EFE               	swapf	126,f
+  3021  0279  0E7E               	swapf	126,w
+  3022  027A  0009               	retfie
+  3023  027B                     __end_of_my_isr:	
+  3024  027B                     PL2:	
+  3025  027B  3E01               	addlw	1
+  3026  027C  1283               	bcf	3,5	;RP0=0, select bank0
+  3027  027D  00C6               	movwf	??_my_isr
+  3028  027E  3000               	movlw	0
+  3029  027F  1803               	skipnc
+  3030  0280  3001               	movlw	1
+  3031  0281  00C7               	movwf	??_my_isr+1
+  3032  0282  0008               	return
+  3033                           
+  3034                           	psect	intentry
+  3035  0004                     __pintentry:	
+  3036                           ; Regs used in _my_isr: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+  3037                           
+  3038  0004                     interrupt_function:	
+  3039  007E                     saved_w	set	btemp
+  3040  0004  00FE               	movwf	btemp
+  3041  0005  0E03               	swapf	3,w
+  3042  0006  1283               	bcf	3,5	;RP0=0, select bank0
+  3043  0007  1303               	bcf	3,6	;RP1=0, select bank0
+  3044  0008  00CA               	movwf	??_my_isr+4
+  3045  0009  0804               	movf	4,w
+  3046  000A  00CB               	movwf	??_my_isr+5
+  3047  000B  080A               	movf	10,w
+  3048  000C  00CC               	movwf	??_my_isr+6
+  3049  000D  087F               	movf	btemp+1,w
+  3050  000E  00CD               	movwf	??_my_isr+7
+  3051  000F  2909               	ljmp	_my_isr
+  3052                           
+  3053                           	psect	text441
+  3054  044C                     __ptext441:	
+  3055 ;; =============== function _my_isr ends ============
+  3056                           
+  3057                           
+  3058 ;; *************** function ___lldiv *****************
+  3059 ;; Defined at:
+  3060 ;;		line 5 in file "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\lldiv.c"
+  3061 ;; Parameters:    Size  Location     Type
+  3062 ;;  divisor         4    0[COMMON] unsigned long 
+  3063 ;;  dividend        4    4[COMMON] unsigned long 
+  3064 ;; Auto vars:     Size  Location     Type
+  3065 ;;  quotient        4    8[COMMON] unsigned long 
+  3066 ;;  counter         1   12[COMMON] unsigned char 
+  3067 ;; Return value:  Size  Location     Type
+  3068 ;;                  4    0[COMMON] unsigned long 
+  3069 ;; Registers used:
+  3070 ;;		wreg, status,2, status,0
+  3071 ;; Tracked objects:
+  3072 ;;		On entry : 60/0
+  3073 ;;		On exit  : 60/0
+  3074 ;;		Unchanged: FFF9F/0
+  3075 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  3076 ;;      Params:         8       0       0       0
+  3077 ;;      Locals:         5       0       0       0
+  3078 ;;      Temps:          0       0       0       0
+  3079 ;;      Totals:        13       0       0       0
+  3080 ;;Total ram usage:       13 bytes
+  3081 ;; Hardware stack levels used:    1
+  3082 ;; This function calls:
+  3083 ;;		Nothing
+  3084 ;; This function is called by:
+  3085 ;;		_my_isr
+  3086 ;; This function uses a non-reentrant model
+  3087 ;;
+  3088  044C                     ___lldiv:	
+  3089                           
+  3090                           ; Regs used in ___lldiv: [wreg+status,2+status,0]
+  3091  044C  01F8               	clrf	___lldiv@quotient
+  3092  044D  01F9               	clrf	___lldiv@quotient+1
+  3093  044E  01FA               	clrf	___lldiv@quotient+2
+  3094  044F  01FB               	clrf	___lldiv@quotient+3
+  3095  0450  0873               	movf	___lldiv@divisor+3,w
+  3096  0451  0472               	iorwf	___lldiv@divisor+2,w
+  3097  0452  0471               	iorwf	___lldiv@divisor+1,w
+  3098  0453  0470               	iorwf	___lldiv@divisor,w
+  3099  0454  1903               	skipnz
+  3100  0455  2C8B               	goto	i1l3764
+  3101  0456  01FC               	clrf	___lldiv@counter
+  3102  0457                     L36:	
+  3103  0457  0AFC               	incf	___lldiv@counter,f
+  3104  0458  1BF3               	btfsc	___lldiv@divisor+3,7
+  3105  0459  2C60               	goto	i1l3752
+  3106  045A  1003               	clrc
+  3107  045B  0DF0               	rlf	___lldiv@divisor,f
+  3108  045C  0DF1               	rlf	___lldiv@divisor+1,f
+  3109  045D  0DF2               	rlf	___lldiv@divisor+2,f
+  3110  045E  0DF3               	rlf	___lldiv@divisor+3,f
+  3111  045F  2C57               	goto	L36
+  3112  0460                     i1l3752:	
+  3113  0460  1003               	clrc
+  3114  0461  0DF8               	rlf	___lldiv@quotient,f
+  3115  0462  0DF9               	rlf	___lldiv@quotient+1,f
+  3116  0463  0DFA               	rlf	___lldiv@quotient+2,f
+  3117  0464  0DFB               	rlf	___lldiv@quotient+3,f
+  3118  0465  0873               	movf	___lldiv@divisor+3,w
+  3119  0466  0277               	subwf	___lldiv@dividend+3,w
+  3120  0467  1D03               	skipz
+  3121  0468  2C73               	goto	u109_25
+  3122  0469  0872               	movf	___lldiv@divisor+2,w
+  3123  046A  0276               	subwf	___lldiv@dividend+2,w
+  3124  046B  1D03               	skipz
+  3125  046C  2C73               	goto	u109_25
+  3126  046D  0871               	movf	___lldiv@divisor+1,w
+  3127  046E  0275               	subwf	___lldiv@dividend+1,w
+  3128  046F  1D03               	skipz
+  3129  0470  2C73               	goto	u109_25
+  3130  0471  0870               	movf	___lldiv@divisor,w
+  3131  0472  0274               	subwf	___lldiv@dividend,w
+  3132  0473                     u109_25:	
+  3133  0473  1C03               	skipc
+  3134  0474  2C85               	goto	L37
+  3135  0475  0870               	movf	___lldiv@divisor,w
+  3136  0476  02F4               	subwf	___lldiv@dividend,f
+  3137  0477  0871               	movf	___lldiv@divisor+1,w
+  3138  0478  1C03               	skipc
+  3139  0479  0F71               	incfsz	___lldiv@divisor+1,w
+  3140  047A  02F5               	subwf	___lldiv@dividend+1,f
+  3141  047B  0872               	movf	___lldiv@divisor+2,w
+  3142  047C  1C03               	skipc
+  3143  047D  0F72               	incfsz	___lldiv@divisor+2,w
+  3144  047E  02F6               	subwf	___lldiv@dividend+2,f
+  3145  047F  0873               	movf	___lldiv@divisor+3,w
+  3146  0480  1C03               	skipc
+  3147  0481  0F73               	incfsz	___lldiv@divisor+3,w
+  3148  0482  02F7               	subwf	___lldiv@dividend+3,f
+  3149  0483  1478               	bsf	___lldiv@quotient,0
+  3150  0484  1003               	clrc
+  3151  0485                     L37:	
+  3152  0485  0CF3               	rrf	___lldiv@divisor+3,f
+  3153  0486  0CF2               	rrf	___lldiv@divisor+2,f
+  3154  0487  0CF1               	rrf	___lldiv@divisor+1,f
+  3155  0488  0CF0               	rrf	___lldiv@divisor,f
+  3156  0489  0BFC               	decfsz	___lldiv@counter,f
+  3157  048A  2C60               	goto	i1l3752
+  3158  048B                     i1l3764:	
+  3159  048B  087B               	movf	___lldiv@quotient+3,w
+  3160  048C  00F3               	movwf	?___lldiv+3
+  3161  048D  087A               	movf	___lldiv@quotient+2,w
+  3162  048E  00F2               	movwf	?___lldiv+2
+  3163  048F  0879               	movf	___lldiv@quotient+1,w
+  3164  0490  00F1               	movwf	?___lldiv+1
+  3165  0491  0878               	movf	___lldiv@quotient,w
+  3166  0492  00F0               	movwf	?___lldiv
+  3167  0493  0008               	return
+  3168  0494                     __end_of___lldiv:	
+  3169                           
+  3170                           	psect	text442
+  3171  051A                     __ptext442:	
+  3172 ;; =============== function ___lldiv ends ============
+  3173                           
+  3174                           
+  3175 ;; *************** function ___lmul *****************
+  3176 ;; Defined at:
+  3177 ;;		line 3 in file "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\lmul.c"
+  3178 ;; Parameters:    Size  Location     Type
+  3179 ;;  multiplier      4    0[COMMON] unsigned long 
+  3180 ;;  multiplicand    4    4[COMMON] unsigned long 
+  3181 ;; Auto vars:     Size  Location     Type
+  3182 ;;  product         4    8[COMMON] unsigned long 
+  3183 ;; Return value:  Size  Location     Type
+  3184 ;;                  4    0[COMMON] unsigned long 
+  3185 ;; Registers used:
+  3186 ;;		wreg, status,2, status,0
+  3187 ;; Tracked objects:
+  3188 ;;		On entry : 60/0
+  3189 ;;		On exit  : 60/0
+  3190 ;;		Unchanged: FFF9F/0
+  3191 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  3192 ;;      Params:         8       0       0       0
+  3193 ;;      Locals:         4       0       0       0
+  3194 ;;      Temps:          0       0       0       0
+  3195 ;;      Totals:        12       0       0       0
+  3196 ;;Total ram usage:       12 bytes
+  3197 ;; Hardware stack levels used:    1
+  3198 ;; This function calls:
+  3199 ;;		Nothing
+  3200 ;; This function is called by:
+  3201 ;;		_my_isr
+  3202 ;; This function uses a non-reentrant model
+  3203 ;;
+  3204  051A                     ___lmul:	
+  3205                           
+  3206                           ; Regs used in ___lmul: [wreg+status,2+status,0]
+  3207  051A  01F8               	clrf	___lmul@product
+  3208  051B  01F9               	clrf	___lmul@product+1
+  3209  051C  01FA               	clrf	___lmul@product+2
+  3210  051D  01FB               	clrf	___lmul@product+3
+  3211  051E                     i1l2509:	
+  3212  051E  1C70               	btfss	___lmul@multiplier,0
+  3213  051F  2D34               	goto	i1l3734
+  3214  0520  0874               	movf	___lmul@multiplicand,w
+  3215  0521  07F8               	addwf	___lmul@product,f
+  3216  0522  0875               	movf	___lmul@multiplicand+1,w
+  3217  0523  1103               	clrz
+  3218  0524  1803               	skipnc
+  3219  0525  3E01               	addlw	1
+  3220  0526  1D03               	btfss	3,2
+  3221  0527  07F9               	addwf	___lmul@product+1,f
+  3222  0528  0876               	movf	___lmul@multiplicand+2,w
+  3223  0529  1103               	clrz
+  3224  052A  1803               	skipnc
+  3225  052B  3E01               	addlw	1
+  3226  052C  1D03               	btfss	3,2
+  3227  052D  07FA               	addwf	___lmul@product+2,f
+  3228  052E  0877               	movf	___lmul@multiplicand+3,w
+  3229  052F  1103               	clrz
+  3230  0530  1803               	skipnc
+  3231  0531  3E01               	addlw	1
+  3232  0532  1D03               	btfss	3,2
+  3233  0533  07FB               	addwf	___lmul@product+3,f
+  3234  0534                     i1l3734:	
+  3235  0534  1003               	clrc
+  3236  0535  0DF4               	rlf	___lmul@multiplicand,f
+  3237  0536  0DF5               	rlf	___lmul@multiplicand+1,f
+  3238  0537  0DF6               	rlf	___lmul@multiplicand+2,f
+  3239  0538  0DF7               	rlf	___lmul@multiplicand+3,f
+  3240  0539  1003               	clrc
+  3241  053A  0CF3               	rrf	___lmul@multiplier+3,f
+  3242  053B  0CF2               	rrf	___lmul@multiplier+2,f
+  3243  053C  0CF1               	rrf	___lmul@multiplier+1,f
+  3244  053D  0CF0               	rrf	___lmul@multiplier,f
+  3245  053E  0873               	movf	___lmul@multiplier+3,w
+  3246  053F  0472               	iorwf	___lmul@multiplier+2,w
+  3247  0540  0471               	iorwf	___lmul@multiplier+1,w
+  3248  0541  0470               	iorwf	___lmul@multiplier,w
+  3249  0542  1D03               	skipz
+  3250  0543  2D1E               	goto	i1l2509
+  3251  0544  087B               	movf	___lmul@product+3,w
+  3252  0545  00F3               	movwf	?___lmul+3
+  3253  0546  087A               	movf	___lmul@product+2,w
+  3254  0547  00F2               	movwf	?___lmul+2
+  3255  0548  0879               	movf	___lmul@product+1,w
+  3256  0549  00F1               	movwf	?___lmul+1
+  3257  054A  0878               	movf	___lmul@product,w
+  3258  054B  00F0               	movwf	?___lmul
+  3259  054C  0008               	return
+  3260  054D                     __end_of___lmul:	
+  3261                           
+  3262 ;; =============== function ___lmul ends ============
+  3263  0006                     
+  3264                           	psect	functab
+  3265  0100                     __pfunctab:	
+  3266  0100                     fptable:	
+  3267  0100  00FF               	movwf	(btemp+1)& (0+127)
+  3268  0101  3001               	movlw	high fptable
+  3269  0102  008A               	movwf	10
+  3270  0103  087F               	movf	(btemp+1)& (0+127),w
+  3271  0104  0782               	addwf	2,f
+  3272  0105                     fpbase:	
+  3273  0105  2905               	goto	fpbase	; Call via a null pointer and you will get stuck here.
+  3274  0106                     fp__Task_1_100ms:	
+  3275  0106  2A83               	ljmp	_Task_1_100ms
+  3276  0107                     fp__Task_2_100ms:	
+  3277  0107  2CD9               	ljmp	_Task_2_100ms
+  3278  0108                     fp__Task_3_500ms:	
+  3279  0108  2D75               	ljmp	_Task_3_500ms
+  3280  007E                     btemp	set	126	;btemp
+  3281  007E                     wtemp0	set	126
+
+
+HI-TECH Software PICC Macro Assembler V9.83 build 10920 
+Symbol Table                                                                                   Wed Aug 16 13:05:28 2017
+
+                          pc 0002               ___bmul@product 0053                           _RD 04E0  
+                         _WR 04E1                           fsr 0004                          l510 0588  
+                        l514 0597                          l523 0446                          l467 0000  
+                        l497 0000                          l931 0000                          l926 0000  
+                        _GIE 005F                          _RA0 0028                          _RA1 0029  
+                        _RB3 0033                          _PR2 0092                          u905 04E0  
+                        u915 04F0                          u925 0505                          u965 0582  
+                        fsr0 0004                          indf 0000                         S4416 0011  
+                       S4418 001D                         l2020 0000                         l2021 059E  
+                       l1322 0000                         l1319 05EF                         l4100 0000  
+                       l4110 0000                         l4102 0289                         l2431 0000  
+                       l4120 02BC                         l4112 0000                         l4200 0384  
+                       l4130 02C8                         l4122 02BE                         l4114 0000  
+                       l4106 0000                         l4140 02D8                         l4132 02CC  
+                       l4124 02C0                         l4116 0000                         l4108 0000  
+                       l4220 0000                         l4300 0000                         l4142 02DA  
+                       l4134 02CE                         l4126 02C2                         l4118 02BA  
+                       l4214 049A                         l4206 0000                         l4310 0000  
+                       l4302 0000                         l4230 0000                         l4152 02EE  
+                       l4136 02D2                         l4128 02C6                         l4224 0494  
+                       l4320 0000                         l4312 0000                         l4304 0000  
+                       l4240 0000                         l4232 0000                         l1681 0000  
+                       l4154 0000                         l4138 02D4                         l4146 02DF  
+                       l4162 0305                         l4218 04CC                         l4330 041A  
+                       l4314 0000                         l4306 0000                         l4250 0000  
+                       l4242 0000                         l4234 0000                         l4226 0000  
+                       l3700 05E1                         l4180 0000                         l4164 0310  
+                       l4156 0000                         l4148 02EA                         l4340 0428  
+                       l4332 041C                         l4324 0000                         l4316 0000  
+                       l4308 0000                         l4260 0000                         l4252 0000  
+                       l4244 0000                         l4236 0000                         l4228 0000  
+                       l3630 0000                         l4182 0000                         l4174 0324  
+                       l4166 0000                         l4158 0000                         l4350 0436  
+                       l4342 042A                         l4334 041E                         l4326 0416  
+                       l4318 0000                         l4270 0000                         l4262 0000  
+                       l4254 0000                         l4246 0000                         l4238 0000  
+                       l1679 05BA                         l4176 0000                         l4168 0000  
+                       l4192 0378                         l4344 042E                         l4336 0422  
+                       l4328 0418                         l4280 0000                         l4272 0000  
+                       l4264 0000                         l4256 0000                         l4248 0000  
+                       l3642 0000                         l3634 0000                         l3706 0000  
+                       l4186 0000                         l4178 0000                         l4194 0380  
+                       l4098 0000                         l4346 0430                         l4338 0424  
+                       l4354 043B                         l4290 0000                         l4282 0000  
+                       l4274 0000                         l4266 0000                         l4258 0000  
+                       l3644 0000                         l3636 0000                         l3652 0000  
+                       l3708 0000                         l4196 0000                         l4188 0375  
+                       l3660 0000                         l4356 0000                         l4348 0434  
+                       l4292 0000                         l4284 0000                         l4276 0000  
+                       l4268 0000                         l3646 0000                         l3638 0000  
+                       l4198 0000                         l3670 0000                         l4358 044A  
+                       l4294 0000                         l4286 0000                         l4278 0000  
+                       l3648 0000                         l3672 0510                         l4296 0000  
+                       l4288 0000                         l3674 0000                         l3682 0000  
+                       l4298 0000                         l3676 0518                         l3692 0000  
+                       l3694 0598                         l3686 058B                         l3678 0000  
+                       l3688 058E                         l3698 0000                         l3876 0000  
+                       l3878 0000                         _BRGH 04C2                         _CREN 00C4  
+               _transmitByte 05ED                         _CSRC 04C7                         _PIE1 008C  
+                       _PEIE 005E                         _INTE 005C                         _INTF 0059  
+                       _RCIE 0465                         _RCIF 0065                         _PCON 008E  
+                       _PIR1 000C                         _SPEN 00C7                         _SREN 00C5  
+                       _TRMT 04C1                         _WREN 04E2                         _TXEN 04C5  
+                       _SYNC 04C4               ??_eeprom_write 0053                         _main 0388  
+                       btemp 007E          __end_of_Create_Task 0575                         start 0010  
+          ___bmul@multiplier 0054                        ?_main 0070                        _EEADR 009B  
+                      _CARRY 0018                        _CMCON 001F              __end_of___lldiv 0494  
+                      _T1CON 0010                        _T2CON 0012                        i1l443 01C1  
+                      i1l438 01C2                        i1l464 026F                        i1l457 01CB  
+                      i1l458 0268                        _RCREG 001A                        _RCSTA 0018  
+                      _TMR1H 000F                        _TMR1L 000E                        _SPBRG 0099  
+                      _PORTA 0005                        _PORTB 0006                        u64_25 0142  
+                      _TRISA 0085                        _TRISB 0086                        u82_25 0203  
+                      _VRCON 009F                        u75_25 01A2                        _TXREG 0019  
+                      _TXSTA 0098          ___lmul@multiplicand 0074                        _RxPtr 0043  
+                      _tasks 0020                        fpbase 0105                        pclath 000A  
+                      status 0003                        wtemp0 007E              fp__Task_1_100ms 0106  
+            fp__Task_2_100ms 0107              fp__Task_3_500ms 0108                 __end_of_main 044C  
+                     ??_main 005C         Task_1_100ms@currAddr 0058                  _Create_Task 054D  
+                     _EEDATA 009A                       _CCPR1H 0016                       _CCPR1L 0015  
+                     _EECON1 009C                       _EECON2 009D                       i1l2512 0000  
+                     i1l2509 051E                       i1l2613 0000                       i1l3520 0000  
+                     i1l3610 0000                       i1l3602 0000                       i1l3522 0000  
+                     i1l3514 0000                       i1l3612 0000                       i1l3604 0000  
+                     i1l3540 0000                       i1l3622 0000                       i1l3606 0000  
+                     i1l3550 0000                       i1l3534 0000                       i1l3542 014F  
+                     i1l3526 011D                       i1l3624 0000                       i1l3608 0000  
+                     i1l3560 0000                       i1l3528 0120                       i1l3730 0000  
+                     i1l3626 0000                       i1l3618 0233                       i1l3570 0182  
+                     i1l3554 0000                       i1l3562 0175                       i1l3538 0000  
+                     i1l3628 026D                       i1l3564 0000                       i1l3572 0184  
+                     i1l3548 0000                       i1l3734 0534                       i1l3742 0000  
+                     i1l3590 01AE                       i1l3582 0195                       i1l3558 016F  
+                     i1l3736 0000                       i1l3752 0460                       i1l3744 0000  
+                     i1l3568 0000                       i1l3762 0000                       i1l3754 0000  
+                     i1l3578 0000                       i1l3764 048B                       i1l3588 0000  
+                     i1l3758 0000                       u109_25 0473                       _INTCON 000B  
+                 _VehV_tiSig 005D                       _TMR1IE 0460                       _TMR1IF 0060  
+                     _TMR1CS 0081                       _TMR2IE 0461                       _TMR2IF 0061  
+                     _TMR1ON 0080                       _TMR2ON 0092         __size_of_eeprom_read 0014  
+ __end_of_Reset_Comm_Timeout 0604  Create_Task@function_pointer 005B                       _Rxdata 00A0  
+                     ___bmul 05DF                       ___lmul 051A                    ??___lldiv 0078  
+              ?_Task_1_100ms 0070                ?_Task_2_100ms 0070                ?_Task_3_500ms 0070  
+                     _my_isr 0109         __end_of_eeprom_write 05B9                       clrloop 05F7  
+                     fptable 0100                       fptotal 0006                       saved_w 007E  
+            eeprom_read@addr 0052          ___bmul@multiplicand 0052               __pcstackCOMMON 0070  
+             ??_Task_1_100ms 00B9                 __pidataBANK0 0000               ??_Task_2_100ms 0052  
+             ??_Task_3_500ms 0052             Create_Task@delay 0057             Create_Task@index 0041  
+         Task_1_100ms@chksum 0054            eeprom_write@value 0052                   __pbssBANK0 0020  
+                 __pbssBANK1 00A0                   __pmaintext 0388                      ?___bmul 0052  
+                    ?___lmul 0070                   __pintentry 0004                      _CCP1CON 0017  
+             ___lmul@product 0078                      ?_my_isr 0070                      _T1CKPS0 0084  
+                    _T1CKPS1 0085              Dispatch_Tasks@i 005B                      _T2CKPS0 0090  
+                    _T2CKPS1 0091                      _T1OSCEN 0083      __size_of_Dispatch_Tasks 0045  
+                    _TOUTPS0 0093                      _TOUTPS1 0094                      _TOUTPS2 0095  
+                    _TOUTPS3 0096                      _nT1SYNC 0082        __size_of_eeprom_write 001C  
+          _VehSpd_ctDlyThres 003B              __size_of___bmul 000E              __size_of___lmul 0033  
+                    ___lldiv 044C              __size_of_my_isr 0172                 ?_Create_Task 0055  
+       __end_of_Task_1_100ms 0388         __end_of_Task_2_100ms 051A         end_of_initialization 05DD  
+       __end_of_Task_3_500ms 059D                 _eeprom_write 059D              ___lldiv@divisor 0070  
+              _VehV_stSpdLim 0045              ___lldiv@counter 007C                  _Rx_complete 0044  
+              _VehSpd_numDly 0060           _Reset_Comm_Timeout 05FE          ?_Reset_Comm_Timeout 0070  
+              ??_eeprom_read 0052         ??_Reset_Comm_Timeout 0052               __end_of___bmul 05ED  
+             __end_of___lmul 054D               __end_of_my_isr 027B            Create_Task@period 0055  
+        start_initialization 05CD               _Dispatch_Tasks 0494                ?_transmitByte 0070  
+           transmitByte@data 0052                    _VehV_vLim 0061                    _VehV_vRef 005F  
+                  _VehV_vRaw 003D                     ??___bmul 0053                     ??___lmul 0078  
+        __end_of_eeprom_read 05CD                  __pdataBANK0 005D                     ??_my_isr 0046  
+     __end_of_Dispatch_Tasks 04D9        __size_of_Task_1_100ms 0105        __size_of_Task_2_100ms 0041  
+                __pbssCOMMON 007D        __size_of_Task_3_500ms 0028                __pcstackBANK0 0046  
+              __pcstackBANK1 00B9               ??_transmitByte 0052             eeprom_write@addr 0053  
+       __size_of_Create_Task 0028                    __pnvBANK0 0060                    __pfunctab 0100  
+                  __ptext430 0494                    __ptext431 054D                    __ptext440 0109  
+                  __ptext432 0575                    __ptext441 044C                    __ptext433 04D9  
+                  __ptext442 051A                    __ptext434 0283                    __ptext435 05DF  
+                  __ptext436 05B9                    __ptext437 05ED                    __ptext438 059D  
+                  __ptext439 05FE                     ?___lldiv 0070                 _Task_1_100ms 0283  
+               _Task_2_100ms 04D9                 _Task_3_500ms 0575                    __pswtext1 0011  
+                  __pswtext2 001D              ?_Dispatch_Tasks 0070             _Rx_elapsed_ticks 0037  
+          interrupt_function 0004                   my_isr@temp 004E                  _eeprom_read 05B9  
+               _VehV_tiPulse 002F                 _VehSpd_ctDly 0039                     _Checksum 0042  
+          ___lmul@multiplier 0070         __end_of_transmitByte 05F6             __size_of___lldiv 0048  
+           Task_1_100ms@data 0056              _VehV_tiPulseAvg 0033                __size_of_main 00C4  
+                   clear_ram 05F6                _elapsed_ticks 003F  __size_of_Reset_Comm_Timeout 0006  
+                   intlevel1 0100             ___lldiv@dividend 0074             ??_Dispatch_Tasks 0059  
+                 _OPTION_REG 0081             ___lldiv@quotient 0078                ??_Create_Task 0059  
+              Task_1_100ms@i 0057                ?_eeprom_write 0052                 ?_eeprom_read 0070  
+          _Dev_stTmprDetActv 007D        __size_of_transmitByte 0009  

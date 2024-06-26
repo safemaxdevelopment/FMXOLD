@@ -1,0 +1,15 @@
+_Create_Task: CODE, 1357 0 40
+_Task_2_100ms: CODE, 1241 0 65
+_main: CODE, 904 0 196
+_Reset_Comm_Timeout: CODE, 1534 0 6
+___lmul: CODE, 1306 0 51
+_Task_3_500ms: CODE, 1397 0 40
+___lldiv: CODE, 1100 0 72
+_Dispatch_Tasks: CODE, 1172 0 69
+_Task_1_100ms: CODE, 643 0 261
+_eeprom_read: CODE, 1465 0 20
+_my_isr: CODE, 265 0 370
+_eeprom_write: CODE, 1437 0 28
+_transmitByte: CODE, 1517 0 9
+___bmul: CODE, 1503 0 14
+Total: 1241
